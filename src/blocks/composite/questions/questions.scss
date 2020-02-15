@@ -1,0 +1,134 @@
+.questions {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: black;
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
+  padding: 35px;
+  padding-bottom: 80px;
+  display: none;
+  height: 100%;
+
+  padding-top: 36px;
+
+  @include laptop() {
+    height: calc(100vh - 48px);
+    padding: 0;
+    padding-bottom: 40px;
+    padding-left: 88px;
+    padding-top: 36px;
+  }
+
+  &__header {
+    display: flex;
+  }
+
+  &__header-title {
+    width: 126px;
+    margin-top: -4px;
+    box-sizing: border-box;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 11px;
+    position: relative;
+    @include laptop() {
+      font-size: 18px;
+    }
+
+    &:after {
+      content: '';
+      width: 1px;
+      height: 100%;
+      background: #FFED00;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    &:before {
+      content: '';
+      width: 24px;
+      height: 3px;
+      background: #FFED00;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  &__header-text {
+    font-size: 12px;
+    padding-top: 1px;
+    width: 220px;
+    line-height: 1.7em;
+    padding-left: 55px;
+
+    @include laptop() {
+      font-size: 14px;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    left: 25px;
+    bottom: 40px;
+
+    @include laptop() {
+      left: auto;
+      bottom: auto;
+      right: 53px;
+      top: 53px;
+    }
+    z-index: 1000;
+  }
+
+  &__title {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  &__inner {
+    padding-top: 20px;
+    @include laptop() {
+      padding-top: 53px;
+      display: flex;
+    }
+  }
+
+  &__col {
+    @include laptop() {
+      width: 48%;
+      box-sizing: border-box;
+
+      &:first-child {
+        padding-right: 95px;
+      }
+    }
+  }
+
+  &__text {
+    font-size: 12px;
+    padding-left: 9px;
+    line-height: 1.7em;
+  }
+
+  &__item {
+    margin-bottom: 21px;
+  }
+
+  &__content {
+    box-sizing: border-box;
+    margin-top: 20px;
+    height: 75%;
+
+    @include laptop() {
+      height: 80%;
+      margin-top: 50px;
+      margin-right: 50px;
+    }
+  }
+}
+

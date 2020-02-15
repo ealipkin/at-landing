@@ -1,0 +1,236 @@
+.menu {
+  position: fixed;
+  right: 35px;
+  top: 35px;
+  z-index: 10;
+
+  @include laptop() {
+    right: 80px;
+    top: 55px;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    color: black;
+    margin-bottom: 64px;
+  }
+
+  &__inner {
+    box-shadow: 0 0 15px 0 rgba(50, 50, 50, 0.1);
+    display: none;
+    box-sizing: border-box;
+    z-index: 1;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url(../images/menu-bg.png) center;
+    padding: 41px 40px 40px 48px;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: auto;
+
+    max-width: 536px;
+  }
+
+  &__toggle {
+    //opacity: 0.5;
+    width: 24px;
+    outline: none;
+    height: 18px;
+    position: relative;
+    cursor: pointer;
+
+    background: none;
+    border: none;
+    color: white;
+
+    span,
+    &:after,
+    &:before {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: all 0.5s ease;
+
+      height: 2px;
+      width: 100%;
+      background: currentColor;
+      border-radius: 5px;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      top: 0;
+      transform: none;
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      top: auto;
+      bottom: 0;
+      transform: none;
+    }
+
+    &:hover {
+      opacity: 1;
+      color: #FFED00;
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    margin-bottom: 34px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+    @include laptop() {
+      height: 30px;
+    }
+  }
+
+  &__link {
+    font-size: 14px;
+    color: black;
+    text-decoration: none;
+    padding-left: 52px;
+    transition: all 0.5s ease;
+    position: relative;
+
+    &-icon {
+      color: inherit;
+      display: block;
+      width: 11px;
+      height: 11px;
+      position: absolute;
+      border: 1px solid transparent;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    @include laptop() {
+      font-size: 18px;
+    }
+
+    &:before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      display: block;
+      position: absolute;
+      background: currentColor;
+      left: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
+    }
+
+    &:hover {
+      font-size: 18px;
+    }
+
+    &_active {
+      font-size: 20px !important;
+
+      &:after {
+        content: '';
+        width: 24px;
+        height: 1px;
+        background: currentColor;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 20px;
+      }
+
+      @include laptop() {
+        font-size: 24px !important;
+      }
+    }
+
+    &_active &-icon {
+      border: 1px solid currentColor;
+    }
+  }
+
+  &__bottom {
+    margin-top: 100px;
+    margin-left: -35px;
+  }
+
+  &__socials {
+    position: absolute;
+    right: 33px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    margin-top: -3px;
+
+    a {
+      color: black;
+      font-size: 10px;
+
+      &:after {
+        border-left: 1px solid currentColor;
+      }
+    }
+  }
+
+  &_opened {
+    .menu__toggle {
+      z-index: 2;
+      opacity: 1;
+
+      span {
+        display: none;
+      }
+
+      &:after,
+      &:before {
+        opacity: 1;
+        background: black;
+
+      }
+
+      &:before {
+        transform: rotate(45deg);
+        left: 0;
+        top: 8px;
+      }
+
+      &:after {
+        transform: rotate(-45deg);
+        left: 0;
+        top: 8px;
+      }
+    }
+
+    .menu__inner {
+      display: flex;
+    }
+  }
+}
+
+.menu_black .menu__toggle {
+  color: black;
+}
+
+.menu.hidden {
+  display: none;
+}

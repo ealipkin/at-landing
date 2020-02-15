@@ -1,0 +1,148 @@
+.section_six {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: none;
+
+    height: 100%;
+    width: 50%;
+    background: url(../images/bubble-pattern2.png) center;
+    top: 30px;
+    right: 0;
+    z-index: -1;
+    background-size: 5%;
+    position: absolute;
+    @include laptop() {
+      display: block;
+    }
+  }
+}
+
+.section-six {
+  //padding-top: 70px;
+
+  .action__button {
+    margin-right: 0;
+  }
+
+  .section-title {
+    position: relative;
+    top: 0;
+    width: 150px;
+    padding-top: 10px;
+
+    @include laptop() {
+      padding-top: 0;
+      //position: absolute;
+      //top: 8px;
+      //width: 124px;
+      //font-size: 16px;
+      padding-bottom: 0;
+      width: 250px;
+      padding-bottom: 20px;
+
+      &:before {
+        width: 23px;
+        bottom: 0;
+      }
+    }
+  }
+
+  .section-header {
+    padding-left: 85px;
+
+    &__text {
+      padding-left: 56px;
+      display: flex;
+      align-items: center;
+      padding-top: 10px;
+      @include laptop() {
+        padding-top: 0;
+      }
+    }
+  }
+
+  &__action {
+    @include laptop() {
+      bottom: 48px;
+      padding-left: 88px;
+      padding-top: 28px;
+      padding-bottom: 30px;
+      height: 112px;
+      box-sizing: border-box;
+    }
+  }
+
+  .action__text {
+    display: none;
+    @include laptop() {
+      display: block;
+      padding-left: 40px;
+      font-size: 16px;
+      line-height: 1.6em;
+      padding-top: 8px;
+      //max-width: 224px;
+    }
+  }
+
+  .action__inner {
+    @include laptop() {
+      display: flex;
+    }
+  }
+
+  .action__button {
+    @include laptop() {
+      width: 224px;
+      font-size: 16px;
+      margin-right: 9px;
+      margin-top: -5px;
+    }
+  }
+
+  .action__title {
+    @include laptop() {
+      padding-bottom: 19px;
+      padding-top: 5px;
+      padding-right: 26px;
+      position: relative;
+      width: 150px;
+      font-size: 18px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        right: 0;
+        left: auto;
+        top: 0;
+        width: 1px;
+        height: 100%;
+        background: #FFED00;
+      }
+    }
+  }
+
+  @media (max-width: $laptop-width) {
+    .section-header__text {
+      //display: none;
+      padding-left: 35px;
+    }
+    .section-six__header {
+      display: flex;
+      padding-top: 10px;
+      padding-bottom: 50px;
+      position: relative;
+      top: 0;
+      left: 0;
+      padding-left: 35px;
+    }
+  }
+}
+
+
+@media (max-width: $laptop-width) {
+  .section-six__next-link {
+    display: none;
+  }
+}

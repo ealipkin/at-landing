@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+*.log
+.idea
+dest/
+variables.env
+variables.env.now
+src/css/compiled/
+src/js/_compiled/
+src/pug/_mixins.pug
+src/_images/
+src/images/mosaic/
+src/images/reviews

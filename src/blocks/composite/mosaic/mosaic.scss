@@ -1,0 +1,381 @@
+.mosaic {
+  position: relative;
+
+  &__inner {
+    margin-top: 50px;
+  }
+
+  .slick-slide {
+    padding: 0 5px;
+    box-sizing: border-box;
+    flex: 1;
+    @include laptop() {
+      height: 60vh;
+    }
+  }
+
+  .slick-initialized .slick-slide {
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+
+    & > div {
+      height: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__slide {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__image {
+    position: relative;
+    //width: 50%;
+    min-height: 150px;
+    //flex-basis: 49%;
+    flex-basis: calc(50% - 5px);
+    font-size: 0;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    margin-bottom: 10px;
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 237, 0, 0.6) url(../images/zoom_icon.png) center no-repeat;
+      z-index: 1;
+      opacity: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.5s ease;
+    }
+
+    &:hover:after {
+      opacity: 1;
+    }
+
+    img {
+      display: none;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @media (min-width: 500px) {
+      min-height: 250px;
+    }
+    @include laptop() {
+      margin-right: 10px;
+      width: 25%;
+      flex-basis: 25%;
+    }
+  }
+
+  &__image_wide {
+    width: 100%;
+    flex-basis: 100%;
+    order: -1;
+    @include laptop() {
+      order: initial;
+      width: 50%;
+      flex-basis: 52%;
+    }
+  }
+
+  &__row {
+    font-size: 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    height: 50%;
+    flex-wrap: wrap;
+    @include laptop() {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__image:last-child {
+    margin-right: 0
+  }
+
+  &__controls {
+    position: absolute;
+    left: 50%;
+    padding: 5px 45px;
+    margin-left: 22px;
+    transform: translateX(-50%);
+    bottom: 0;
+    height: 64px;
+    background: black;
+    display: flex;
+    z-index: 10;
+    align-items: center;
+
+    .slick-arrow {
+      position: relative;
+      left: auto;
+      bottom: auto;
+      top: auto;
+      right: auto;
+      transform: none;
+      width: 24px;
+      height: 24px;
+      box-sizing: border-box;
+      padding: 0;
+      border-radius: 50%;
+      border: 1px solid #FFED00;
+      color: #FFED00;
+      flex-shrink: 0;
+      transition: all 0.5s ease;
+
+      &:after, &:before {
+        display: none;
+      }
+
+      &:after {
+        content: '';
+        display: block;
+        transform: rotate(135deg) translate(-50%, -50%);
+        width: 5px;
+        height: 5px;
+        border: 1px solid currentColor;
+        left: 50%;
+        top: 50%;
+        border-left-color: transparent;
+        border-top-color: transparent;
+        margin-left: 4px;
+        margin-top: 0;
+      }
+    }
+
+    .slick-arrow:hover {
+      background: white;
+      color: black;
+      border-color: black;
+    }
+
+    .slick-dots {
+      right: auto;
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none;
+      bottom: auto;
+      order: 2;
+      align-items: center;
+      display: flex;
+
+      li {
+        height: auto;
+        width: 20px;
+      }
+    }
+
+    .slick-prev {
+      order: 1;
+      margin-right: 15px;
+      margin-top: -2px;
+    }
+
+    .slick-next {
+      order: 3;
+      margin-left: 15px;
+      margin-top: -5px;
+
+      &:after {
+        transform: rotate(-45deg) translate(-50%, -50%);
+        margin-left: 11px;
+      }
+    }
+  }
+}
+
+.lg-hide-items .lg-toolbar {
+  opacity: 1;
+  transform: none;
+}
+
+.lg-toolbar.lg-group {
+  background: none;
+
+  * {
+    display: none;
+  }
+
+  .lg-close.lg-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background: black;
+    transition: all 0.5s ease;
+    width: 70px;
+
+    @include laptop() {
+      width: 136px;
+      height: 136px;
+    }
+
+    &:after,
+    &:before {
+      content: '';
+      height: 2px;
+      background: white;
+      position: absolute;
+      transform: rotate(45deg);
+      width: 20px;
+      @include laptop() {
+        width: 48px;
+      }
+    }
+
+    &:after {
+      transform: rotate(135deg);
+    }
+
+    &:hover {
+      background: #FFED00;
+
+      &:after,
+      &:before {
+
+        background: black;
+      }
+    }
+  }
+}
+
+.lg-actions .lg-icon {
+  opacity: 1;
+}
+
+.lg-actions .lg-next, .lg-actions .lg-prev {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  transform: none;
+  margin: 0;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 2px solid #FFED00;
+  opacity: 1;
+  outline: none;
+  margin-bottom: 30px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  color: white;
+
+  @include laptop() {
+    width: 87px;
+    height: 87px;
+  }
+
+  &:after {
+    display: none;
+  }
+
+  &:before {
+    opacity: 1;
+    content: '';
+    transform: rotate(135deg) translate(-50%, -50%);
+    border: 2px solid currentColor;
+    display: block;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    margin-top: 0;
+    left: 50%;
+    top: 50%;
+    margin-left: -5px;
+
+    width: 10px;
+    height: 10px;
+
+    @include laptop() {
+      width: 25px;
+      height: 25px;
+      margin-left: 5px;
+    }
+  }
+
+  &:hover {
+    background-color: #FFED00;
+  }
+}
+
+.lg-actions .lg-next {
+  &:before {
+    opacity: 1;
+    content: '';
+    transform: rotate(-45deg) translate(-50%, -50%);
+    margin-left: 7px;
+    @include laptop() {
+      margin-left: 30px;
+    }
+  }
+}
+
+
+.lg-actions {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 70px;
+  @include laptop() {
+    background: black;
+    width: 136px;
+  }
+}
+
+#lg-counter {
+  position: absolute;
+  z-index: 9999;
+  text-align: center;
+  color: white;
+  padding: 0;
+  box-sizing: border-box;
+  background: black;
+  bottom: 0;
+  left: 0;
+  padding-top: 30px;
+  height: 60px;
+  width: 100px;
+  @include laptop() {
+    padding-top: 50px;
+    bottom: 30px;
+    left: 30px;
+    width: 168px;
+    height: 120px;
+    font-size: 30px;
+  }
+
+  &:before {
+    content: 'Страница';
+    font-weight: 300;
+    font-size: 14px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 10px;
+    text-align: center;
+
+    @include laptop() {
+      top: 20px;
+      font-size: 20px;
+    }
+  }
+}

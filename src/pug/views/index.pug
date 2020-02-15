@@ -1,0 +1,22 @@
+extends ../layouts/main
+
+block content
+    +menu()
+    .page-container
+        .section.section-black.section-main(data-anchor="main")
+            +section-one()
+        .section.section_two.section-white(data-anchor="meet")
+            +section-two()
+        .section.section-white.section_three(data-anchor="provide")
+            +section-three()
+        .section.section-black(data-anchor="media")
+            +section-four()
+        .section.section-white.section_five(data-anchor="programs")
+            +section-five()
+        .section.section-white.section_six(data-anchor="reviews")
+            +section-six()
+        .section.section-white.section_seven(data-anchor="contacts")
+            +section-seven()
+    +order-modal()
+    +questions()
+    +offers()

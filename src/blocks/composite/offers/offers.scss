@@ -1,0 +1,120 @@
+.offers {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style-type: none;
+
+  @include laptop() {
+    margin-top: 145px;
+  }
+
+  &__item {
+    width: 49%;
+    min-height: 146px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 37px;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    background: white;
+
+    box-shadow: 0 0 15px 0 rgba(50, 50, 50, 0.1);
+
+    padding: 19px 20px 19px 30px;
+    margin-bottom: 18px;
+
+    &:before {
+      content: '';
+      width: 10px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #FFED00;
+      @include laptop() {
+        width: 16px;
+      }
+    }
+
+    @include laptop() {
+      width: 32%;
+      margin-bottom: 40px;
+      height: 176px;
+      box-sizing: border-box;
+      padding: 27px 150px 19px 47px;
+      border-radius: 50px;
+    }
+  }
+
+  &__title {
+    font-size: 12px;
+    line-height: 1.5em;
+    padding-bottom: 25px;
+    position: relative;
+    margin-bottom: 23px;
+    width: 83%;
+
+    span {
+      white-space: nowrap;
+    }
+
+    &:before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: black;
+      position: absolute;
+      bottom: 0;
+
+      @include laptop() {
+        width: 27px;
+        height: 2px;
+        bottom: -1px;
+        left: 5px;
+      }
+    }
+
+    @include laptop() {
+      font-size: 18px;
+      max-width: 37%;
+    }
+  }
+
+  &__button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    justify-content: center;
+    //width: 56px;
+    //padding: 20px;
+    //height: 20px;
+    outline: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: 1px solid #FFED00;
+    background: #FFED00;
+    position: relative;
+    color: black;
+    transition: all 0.5s ease;
+
+    &:hover {
+      background: transparent;
+      border-color: black;
+    }
+
+    @include laptop() {
+      position: absolute;
+      right: 38px;
+      bottom: 23px;
+      font-size: 14px;
+      //height: 32px;
+      //width: 72px;
+      border-radius: 20px;
+      z-index: 1;
+    }
+  }
+}

@@ -1,0 +1,272 @@
+.slider {
+  padding: 0 47px;
+
+  @include laptop() {
+    padding: 0;
+  }
+
+  &__inner {
+    //padding-bottom: 70px;
+    //box-shadow: 0 0 15px 0 rgba(50, 50, 50, 0.1);
+  }
+
+  &__top {
+    display: flex;
+    margin-bottom: 40px;
+    @include laptop() {
+      margin-bottom: 33px;
+    }
+  }
+
+  &__title {
+    font-size: 12px;
+    margin-top: 2px;
+    padding-bottom: 24px;
+    position: relative;
+
+    &:after {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: #FFED00;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    @include laptop() {
+      font-size: 25px;
+      margin-top: 11px;
+      padding-bottom: 41px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__text {
+    font-size: 12px;
+    line-height: 1.7em;
+    padding-right: 5px;
+    flex: 1;
+    height: 30vh;
+    min-height: 200px;
+    padding-top: 0;
+
+    @include laptop() {
+      height: auto;
+      font-size: 16px;
+      padding-right: 44px;
+      max-height: 30vh;
+      //max-height: none;
+    }
+  }
+
+  &__image {
+    width: 52%;
+    min-width: 120px;
+    margin-right: 23px;
+    max-width: 160px;
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    @include laptop() {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 264px;
+      max-width: 264px;
+      margin-right: 0;
+    }
+  }
+
+  &__slide {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    @include laptop() {
+      padding-left: 284px;
+      min-height: 400px;
+    }
+  }
+
+  &__item {
+    border-left: 2px solid #FFED00;
+    //max-height: 416px;
+    padding: 24px 23px 42px 23px;
+    box-sizing: border-box;
+    position: relative;
+    background: white;
+
+    &:after {
+      content: '';
+      width: 170px;
+      height: 2px;
+      background: #FFED00;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+
+    &:before {
+      content: '';
+      width: 90px;
+      height: 2px;
+      background: #FFED00;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    @include laptop() {
+      padding: 16px 23px 16px 15px;
+    }
+
+  }
+
+  .slick-dots {
+    position: absolute;
+  }
+
+  .slick-prev,
+  .slick-next {
+    box-sizing: border-box;
+    width: 25px;
+    height: 25px;
+    color: #BDBDBD;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.5s ease;
+    z-index: 1;
+
+    &:hover {
+      color: white;
+      background: #FFED00;
+      border-color: #FFED00;
+    }
+
+    &:before {
+      display: none;
+    }
+
+    &:after {
+      content: '';
+      transform: rotate(135deg) translate(-50%, -50%);
+      width: 5px;
+      height: 5px;
+      border: 1px solid currentColor;
+      left: 50%;
+      top: 50%;
+      display: block;
+      border-left-color: transparent;
+      border-top-color: transparent;
+      margin-left: 5px;
+      margin-top: 0;
+    }
+  }
+
+  .slick-disabled {
+    opacity: 0.4;
+    color: #BDBDBD;
+
+    &:hover {
+      color: #BDBDBD;
+    }
+  }
+
+  .slick-prev {
+    left: -37px;
+
+    &:after {
+      @include laptop() {
+        width: 10px;
+        height: 10px;
+        margin-left: 8px;
+        margin-top: 1px;
+      }
+    }
+
+    @include laptop() {
+      left: 13.5%;
+      margin-top: -35px;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .slick-next {
+    right: auto;
+    left: calc(100% + 12px);
+
+    &:after {
+      transform: rotate(-45deg);
+      margin-left: 6px;
+
+      @include laptop() {
+        width: 10px;
+        height: 10px;
+        margin-left: 10px;
+        margin-top: 1px;
+      }
+    }
+
+    @include laptop() {
+      right: 14%;
+      left: auto;
+      margin-top: -35px;
+      width: 40px;
+      height: 40px;
+
+    }
+  }
+
+  .slick-dots {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 9px;
+  }
+  
+  .slick-slide {
+    transition: opacity 0.5s ease;
+    @include laptop() {
+      opacity: 0.5;
+      padding: 0 70px;
+    }
+  }
+
+  .slick-list {
+
+    @include laptop() {
+      padding-top: 25px !important;
+      padding-bottom: 25px !important;
+    }
+  }
+
+  .slick-current {
+    opacity: 1;
+
+    @include laptop() {
+      .slider__item {
+        box-shadow: 0 0 4px 0 rgba(50, 50, 50, 0.25);
+      }
+    }
+  }
+
+  .slick-dotted.slick-slider {
+    padding-bottom: 60px;
+    margin-bottom: 20px;
+
+    @include laptop() {
+      padding-bottom: 30px;
+    }
+  }
+}

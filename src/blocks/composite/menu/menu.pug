@@ -1,0 +1,44 @@
+mixin menu()
+    .menu
+        button(type="button").menu__toggle
+            span
+        .menu__inner
+            ul.menu__socials.socials
+                li
+                    a(href="") VKONTAKTE
+                li
+                    a(href="") FACEBOOK
+                li
+                    a(href="") YOUTUBE
+                li
+                    a(href="") INSTAGRAM
+
+            .menu__title Menu
+            ul.menu__list
+                li.menu__item
+                    a(href="#main").menu__link.menu__link_active Главная
+                        span.menu__link-icon
+                li.menu__item
+                    a(href="#meet").menu__link О нас
+                        span.menu__link-icon
+                li.menu__item
+                    a(href="#provide").menu__link Услуги
+                        span.menu__link-icon
+                li.menu__item
+                    a(href="#media").menu__link Галерея
+                        span.menu__link-icon
+                li.menu__item
+                    a(href="#programs").menu__link Шоу-программы
+                        span.menu__link-icon
+                li.menu__item
+                    a(href="#reviews").menu__link Отзывы
+                        span.menu__link-icon
+                li.menu__item
+                    a(href="#contacts").menu__link Контакты
+                        span.menu__link-icon
+                li.menu__item
+                    a(href="https://at-event.ru/" target="_blank").menu__link Помощь в организации
+                        span.menu__link-icon
+            .menu__bottom.main-logo
+                img(src="images/logo-black.png")
+                | Андрей и Татьяна

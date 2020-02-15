@@ -1,0 +1,101 @@
+.section_three {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: none;
+
+    height: 100%;
+    width: 50%;
+    background: url(../images/bubble-pattern2.png) center;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background-size: 5%;
+    left: auto;
+    position: absolute;
+    @include laptop() {
+      display: block;
+    }
+  }
+}
+
+.section-three {
+  padding-top: 30px;
+
+  @include laptop() {
+    padding-top: 0;
+  }
+  
+  .section-header {
+    @media (max-width: $laptop-width) {
+      padding-left: 0;
+      padding-right: 0;
+      min-width: 0;
+    }
+  }
+
+  .section-title {
+    max-width: 120px;
+
+    @media (max-width: $laptop-width) {
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+
+    @include laptop() {
+      max-width: 160px;
+      padding-right: 38px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    
+    @include laptop() {
+      padding-left: 83px;
+      padding-top: 0;
+      padding-bottom: 0;
+      top: 30px;
+    }
+  }
+
+  .section-header__text {
+    @include laptop() {
+      padding-left: 88px;
+      display: flex;
+      width: 250px;
+      padding-top: 22px;
+    }
+  }
+
+  &__next-link {
+    display: none;
+
+    @include laptop() {
+      display: flex;
+    }
+  }
+
+}
+
+.section-title {
+  font-size: 22px;
+  padding-bottom: 20px;
+
+  position: absolute;
+  top: 40px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 43px;
+    height: 3px;
+    background: #FFED00;
+    left: 0;
+    bottom: 0;
+  }
+}

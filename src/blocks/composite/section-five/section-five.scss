@@ -1,0 +1,74 @@
+.section_five {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: none;
+
+    height: 100%;
+    width: 50%;
+    background: url(../images/bubble-pattern2.png) center;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-size: 5%;
+    position: absolute;
+    @include laptop() {
+      display: block;
+    }
+  }
+}
+
+.section-five {
+  &__header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: $laptop-width) {
+    .section-title {
+      position: relative;
+      top: 0;
+      padding-top: 10px;
+      padding-right: 0;
+      //position: absolute;
+      //left: 36px;
+      //top: 28px;
+      //max-width: 240px;
+    }
+    .section-header {
+      padding-left: 0;
+      padding-right: 0;
+      min-width: 0;
+    }
+    .section-header__text {
+      padding-top: 0;
+      width: 45%;
+      @include laptop() {
+        width: 120px;
+      }
+      //display: none;
+    }
+  }
+  .section-header__text {
+    @include laptop() {
+      width: 360px;
+      margin-top: -20px;
+    }
+  }
+  &__next-link {
+    display: none;
+
+    @include laptop() {
+      display: flex;
+    }
+  }
+
+  .offers {
+    @media (max-width: $laptop-width) {
+      //margin-top: 155px;
+    }
+  }
+}

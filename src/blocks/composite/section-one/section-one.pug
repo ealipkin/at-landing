@@ -1,0 +1,27 @@
+mixin section-one()
+    .header
+        .header__logo.logo
+            img(src="images/logo.png")
+            | Андрей и Татьяна
+    section.section-one.container
+        .section-one__inner
+            .title.section-one__title АНДРЕЙ И&nbsp;ТАТЬЯНА
+            .text-big.section-one__text Лучший дуэт ведущих для вашего мероприятия 
+            ul.list
+                li.list__item Мы усердно работаем, чтобы вы&nbsp;отдыхали
+                li.list__item Мы делаем каждое событие ярким и&nbsp;незабываемым
+        .section-one__buttons
+            button(type="button", data-move-to="2").button.section-one__button.move-to-link Подробнее
+            button(type="button").button.section-one__button.open-order Забронировать
+        .section-one__contacts
+            a(href="tel:+79823112892" title="+7(982)311-28-92").call-link.section-one__call
+            ul.section-one__socials.socials
+                li
+                    a(href="https://vk.com/at.event" target="_blank") VKONTAKTE
+                li
+                    a(href="https://www.instagram.com/at.event/" target="_blank") INSTAGRAM
+                li
+                    a(href="https://www.facebook.com/at.event.ru" target="_blank") FACEBOOK
+                li
+                    a(href="https://www.youtube.com/channel/UC676j7XaxvcC2cYz5Ghf6zA?view_as=subscriber" target="_blank") YOUTUBE
+            

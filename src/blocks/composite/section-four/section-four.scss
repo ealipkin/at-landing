@@ -1,0 +1,36 @@
+.section-four {
+  color: white;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+
+    @include laptop() {
+      padding-top: 0;
+    }
+  }
+
+  .section-title {
+    color: white;
+    top: auto;
+    @include laptop() {
+      padding-right: 78px;
+    }
+  }
+
+  .section-header__text {
+    @include laptop() {
+      padding-left: 88px;
+      width: 250px;
+      padding-top: 17px;
+    }
+  }
+}
+
+.section-four__next-link {
+  display: none;
+  @include laptop() {
+    display: flex;
+  }
+}
