@@ -15955,48 +15955,46 @@ return Outlayer;
 
   var $orderModal = $('.order-modal');
   var $orderForm = $('.order-modal__inner');
-
+  var fieldsMap = {
+    'name': 'Имя',
+    'email': 'Почта',
+    'event_type': 'Тип мероприятия',
+    'budget': 'Бюджет',
+    'day': 'День',
+    'month': 'Месяц',
+    'year': 'Год'
+  };
+  var $formLoader = $('.order-modal__loader');
+  var $formMain = $('.order-modal__main');
+  var $formSuccess = $('.order-modal__success-message');
+  var orderForm = document.querySelector('.order-modal__inner');
   $orderForm.on('submit', function (e) {
     e.preventDefault();
     e.stopPropagation();
-    var $target = $(e.currentTarget);
-    var data = $target.serializeArray();
-    // send data here
-    $target.get(0).reset();
-    console.log(data);
-    // $target.fadeOut();
-
-    // dataText += '|\n';
-    /*
-    var form = $(this).parent();
-    var nameField = $(form).find('.f-name');
-    var name = nameField.attr('name') + ': ' + nameField.val();
-    var phoneField = $(form).find('.f-phone');
-    var phone = phoneField.attr('name') + ': ' + phoneField.val();
-    var mailField = $(form).find('.f-mail');
-    var mail = mailField.attr('name') + ': ' + mailField.val();
-    var timeField = $(form).find('.f-time');
-    var time = timeField.attr('name') + ': ' + timeField.val();
-    var type = $(form).data('type');
-    var preloader = $(form).children('.form-preloader');
+    var $form = $(e.currentTarget);
+    var data = $form.serializeArray();
     var title = 'Раздел сайта - ' + $('title').text();
-    if (checkForm(form)) {
-      $(preloader).height($(form).height());
-      $(preloader).fadeIn();
-      $(form).children().attr('disabled', 'disabled');
-      var dataText = getSendText(type, name, title, phone, time);
-      $.ajax({
-        type: 'POST', url: '/mail.php', data: { dataText: dataText }, success: function success(response) {
-          $(form).children('button').hide();
-          $(preloader).fadeOut();
-          $(form).children('.form-message').text('Заявка успешно отправлена!').show();
-        }, error: function error(data) {
-          $(preloader).fadeOut();
-          $(form).children().removeAttr('disabled', 'disabled');
-          $(form).children('.form-message').text('Произошла ошибка, попробуйте еще раз.').show();
-        }
-      });
-    }*/
+    var text = data.map(function (item) {
+      return fieldsMap[item.name] + ' - ' + item.value;
+    });
+    var resultText = text.join(' | \n');
+    var dataText = title + '.| \n ' + resultText;
+    $formLoader.fadeIn();
+    $.ajax({
+      type: 'POST',
+      url: '/mail.php',
+      data: { dataText: dataText },
+      success: function success(response) {
+        $formMain.hide();
+        $formSuccess.show();
+        $formLoader.fadeOut();
+        orderForm.reset();
+      },
+      error: function error(data) {
+        orderForm.reset();
+        $formLoader.fadeOut();
+      }
+    });
   });
 
   $('.order-modal__close').click(function () {
@@ -16007,6 +16005,8 @@ return Outlayer;
     e.preventDefault();
     e.stopPropagation();
     $('body').css('overflow', 'visible');
+    $formMain.show();
+    $formSuccess.hide();
     $orderModal.fadeIn();
   });
 

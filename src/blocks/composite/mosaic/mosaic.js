@@ -6,11 +6,15 @@
     thumbnail: false,
     appendCounterTo: '.lg',
   });
+
   $slider.slick({
     dots: true,
     arrows: true,
+    // fade: true,
+    speed: 1000,
+    lazyLoad: 'ondemand',
     infinite: true,
-    speed: 300,
+    edgeFriction: '2',
     slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,

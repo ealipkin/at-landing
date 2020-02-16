@@ -16,14 +16,14 @@
     setTimeout(() => {
       instance.update(true);
     }, 1000);
-    $('body').css('overflow', 'hidden');
+    $('body').addClass('hidden');
   });
 
   $('.offer-info__back .close-btn').click((e) => {
     const $target = $(e.currentTarget);
     const $popup = $target.closest('.offer-info');
     $popup.fadeOut();
-    $('body').css('overflow', 'visible');
+    $('body').addClass('hidden')
   });
 
   $('.offer-info__button').click((e) => {

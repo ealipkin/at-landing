@@ -3,8 +3,8 @@
     const $popup = $(`.questions`);
     const inner = $popup[0].querySelector('.questions__content');
     $('.menu').addClass('hidden');
+    $('body').addClass('hidden');
     $popup.fadeIn();
-    $('body').css('overflow', 'hidden');
     const instance = new OverlayScrollbars(inner, {});
     instance.sleep();
     setTimeout(() => {
@@ -17,7 +17,7 @@
     const $section = $target.closest('.questions');
     $('.menu').removeClass('hidden');
     $section.fadeOut();
-    $('body').css('overflow', 'visible');
+    $('body').removeClass('hidden');
   });
 
 })();

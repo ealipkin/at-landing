@@ -1,54 +1,57 @@
 mixin order-modal()
     .order-modal
         form(action="#").order-modal__inner
+            span.order-modal__loader
             .close-btn.order-modal__close Назад
                 span
-            .order-modal__title Давайте обсудим ваше мероприятие
-            .order-modal__text Отправьте заявку и мы свяжемся с вами в ближайшее время
-            input(type="text" placeholder="Ваше имя и фамилия..." name="name" required).order-modal__row.input
-            input(type="text" placeholder="Email..." name="email" required).order-modal__row.input
-            input(type="text" placeholder="Тип мероприятия..." name="type" required).order-modal__row.input
-            input(type="text" placeholder="Планируемый бюджет..." name="budget" required).order-modal__row.input
-            .order-modal__dates
-                .labeled-select
-                    .labeled-select__label День
-                    select(name="day").labeled-select__select
-                        option 01
-                        option 02
-                        option 03
-                        option 04
-                        option 05
-                        option 06
-                        option 07
-                        option 08
-                        option 09
-                        option 10
-                .labeled-select
-                    .labeled-select__label Месяц
-                    select(name="day").labeled-select__select
-                        option 01
-                        option 02
-                        option 03
-                        option 04
-                        option 05
-                        option 06
-                        option 07
-                        option 08
-                        option 09
-                        option 10
-                        option 11
-                        option 12
-                .labeled-select
-                    .labeled-select__label Год
-                    select(name="day").labeled-select__select
-                        option 2020
-                        option 2021
-                        option 2022
-                        option 2023
-                        option 2024
-                        option 2025
-            .order-modal__row
-                button(type="submit").order-modal__button Отправить
+            .order-modal__success-message Ваша заявка отправлена, мы свяжемся с вами в ближайшее время
+            .order-modal__main
+                .order-modal__title Давайте обсудим ваше мероприятие
+                .order-modal__text Отправьте заявку и мы свяжемся с вами в ближайшее время
+                input(type="text" placeholder="Ваше имя и фамилия..." name="name" required).order-modal__row.input
+                input(type="text" placeholder="Email..." name="email" required).order-modal__row.input
+                input(type="text" placeholder="Тип мероприятия..." name="event_type" required).order-modal__row.input
+                input(type="text" placeholder="Планируемый бюджет..." name="budget" required).order-modal__row.input
+                .order-modal__dates
+                    .labeled-select
+                        .labeled-select__label День
+                        select(name="day").labeled-select__select
+                            option 01
+                            option 02
+                            option 03
+                            option 04
+                            option 05
+                            option 06
+                            option 07
+                            option 08
+                            option 09
+                            option 10
+                    .labeled-select
+                        .labeled-select__label Месяц
+                        select(name="month").labeled-select__select
+                            option 01
+                            option 02
+                            option 03
+                            option 04
+                            option 05
+                            option 06
+                            option 07
+                            option 08
+                            option 09
+                            option 10
+                            option 11
+                            option 12
+                    .labeled-select
+                        .labeled-select__label Год
+                        select(name="year").labeled-select__select
+                            option 2020
+                            option 2021
+                            option 2022
+                            option 2023
+                            option 2024
+                            option 2030
+                .order-modal__row
+                    button(type="submit").order-modal__button Отправить
             .order-modal__bottom.main-logo
                 img(src="images/logo-black.png")
                 | Андрей и Татьяна

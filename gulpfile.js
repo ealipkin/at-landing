@@ -56,7 +56,7 @@ gulp.task('watch', ['browser-sync'], function () {
 
   gulp.watch('src/json/*.json', ['json-copy']);
 
-  gulp.watch('dest/css/main.css', function () {
+  gulp.watch('dest/css/landing.css', function () {
     browserSync.reload("*.css");
   });
 });
@@ -68,7 +68,7 @@ gulp.task('page', function () {
     pageName = name;
 
     gulp.watch(`dest/${name}.html`).on('change', browserSync.reload);
-    gulp.watch(`dest/js/main.js`).on('change', browserSync.reload);
+    gulp.watch(`dest/js/landing.js`).on('change', browserSync.reload);
     console.log('page is run');
     return true;
   });
@@ -121,8 +121,8 @@ gulp.task('json-copy', function () {
 //CSS
 gulp.task('css', ['sass'], function () {
   return gulp
-    .src('src/css/compiled/main.css')
-    .pipe(rename('main.css'))
+    .src('src/css/compiled/landing.css')
+    .pipe(rename('landing.css'))
     .pipe(sourcemaps.init())
     .pipe(postcss([require('autoprefixer')]))
     .pipe(sourcemaps.write('.'))
@@ -141,7 +141,7 @@ gulp.task('sass', function () {
       'src/blocks/composite/**/*.scss',
       'src/css/utils.scss'
     ])
-    .pipe(concat('main.css'))
+    .pipe(concat('landing.css'))
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('src/css/compiled'));
 });
@@ -170,7 +170,7 @@ gulp.task('js', ['js-build:vendor', 'js-build:project'], function () {
       'src/js/_compiled/_vendor-code.js',
       'src/js/_compiled/_project-code.js'
     ])
-    .pipe(concat('main.js'))
+    .pipe(concat('landing.js'))
     .pipe(gulp.dest('dest/js/'))
     .pipe(gulp.dest('src/'));
 
@@ -178,7 +178,7 @@ gulp.task('js', ['js-build:vendor', 'js-build:project'], function () {
 
 gulp.task('js-uglify', function () {
   return gulp
-    .src('dest/js/main.js')
+    .src('dest/js/landing.js')
     .pipe(sourcemaps.init())
     .pipe(uglify())
     .pipe(sourcemaps.write('/'))
@@ -212,7 +212,7 @@ gulp.task('js-build:project', function () {
 
 gulp.task('buster', function () {
   return gulp
-    .src(['dest/js/main.js', 'dest/css/main.css'])
+    .src(['dest/js/landing.js', 'dest/css/landing.css'])
     .pipe(bust())
     .pipe(gulp.dest('.'))
 });

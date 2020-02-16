@@ -54,7 +54,7 @@
   }
   .section-header__text {
     @include laptop() {
-      width: 360px;
+      width: 500px;
       margin-top: -20px;
     }
   }

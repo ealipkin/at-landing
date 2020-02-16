@@ -17,12 +17,14 @@
           const isBlack = item.classList.contains('section-black');
           const menu = document.querySelector('.menu');
           $('.offer-info').fadeOut();
-          // $('body').css('overflow', 'visible');
+          $('body').removeClass('hidden');
           if (!isBlack) {
             menu.classList.add('menu_black');
           } else {
             menu.classList.remove('menu_black');
           }
+
+          window.lazyLoadInstance.update();
         },
         afterLoad: function (origin, destination, direction) {
           const item = destination.item;
@@ -31,7 +33,7 @@
           const anchor = item.dataset.anchor;
           $('.questions').fadeOut();
           $('.offer-info').fadeOut();
-          // $('body').css('overflow', 'visible');
+          $('body').removeClass('hidden');
           $('.menu').removeClass('hidden');
           $('.menu__link_active').removeClass('menu__link_active');
           $(`.menu__link[href="#${anchor}"]`).addClass('menu__link_active');
@@ -40,6 +42,8 @@
           } else {
             menu.classList.remove('menu_black');
           }
+
+          window.lazyLoadInstance.update();
         },
       });
   });
@@ -70,11 +74,44 @@
 
   const $orderModal = $('.order-modal');
   const $orderForm = $('.order-modal__inner');
+  const fieldsMap = {
+    'name': 'Имя',
+    'email': 'Почта',
+    'event_type': 'Тип мероприятия',
+    'budget': 'Бюджет',
+    'day': 'День',
+    'month': 'Месяц',
+    'year': 'Год',
+  };
+  const $formLoader = $('.order-modal__loader');
+  const $formMain = $('.order-modal__main');
+  const $formSuccess = $('.order-modal__success-message');
+  const orderForm = document.querySelector('.order-modal__inner');
   $orderForm.on('submit', (e) => {
     e.preventDefault();
-    // send data here
-    $orderForm.reset();
-    $orderModal.fadeOut();
+    e.stopPropagation();
+    const $form = $(e.currentTarget);
+    const data = $form.serializeArray();
+    const title = 'Раздел сайта - ' + $('title').text();
+    const text = data.map(item => `${fieldsMap[item.name]} - ${item.value}`);
+    const resultText = text.join(' | \n');
+    const dataText = `${title}.| \n ${resultText}`;
+    $formLoader.fadeIn();
+    $.ajax({
+      type: 'POST',
+      url: '/mail.php',
+      data: {dataText: dataText},
+      success: function success(response) {
+        $formMain.hide();
+        $formSuccess.show();
+        $formLoader.fadeOut();
+        orderForm.reset();
+      },
+      error: function error(data) {
+        orderForm.reset();
+        $formLoader.fadeOut();
+      }
+    });
   });
 
   $('.order-modal__close').click(() => {
@@ -85,6 +122,8 @@
     e.preventDefault();
     e.stopPropagation();
     $('body').css('overflow', 'visible');
+    $formMain.show();
+    $formSuccess.hide();
     $orderModal.fadeIn();
   });
 
@@ -111,4 +150,9 @@
       $('body').removeClass('hidden');
     }
   });
+
+  window.lazyLoadInstance = new LazyLoad({
+    elements_selector: '.lazy',
+  });
+  window.lazyLoadInstance.update();
 })();
