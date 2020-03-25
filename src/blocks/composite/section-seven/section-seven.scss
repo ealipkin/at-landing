@@ -86,7 +86,7 @@
       top: 50%;
       transform: translateY(-50%);
       margin-top: -21px;
-      
+
       img {
         width: 100%;
       }
@@ -104,7 +104,6 @@
       font-size: 16px;
       margin-top: 25px;
       width: 350px;
-      margin-bottom: 60px;
     }
 
     &__contacts {
@@ -132,6 +131,12 @@
       margin-right: 22px;
     }
   }
+
+  @include desktop() {
+    &__text {
+      margin-bottom: 60px;
+    }
+  }
 }
 
 .contacts {
@@ -143,6 +148,11 @@
 
   padding: 63px 35px 20px 71px;
   margin-right: -35px;
+
+  .button:hover {
+    color: black;
+    border-color: black;
+  }
 
   &__phone-title {
     font-size: 12px;
@@ -201,39 +211,61 @@
       font-size: 14px;
       text-decoration: none;
       color: black;
+      border-bottom: 1px solid transparent;
+      transition: all 0.5s ease;
+      padding-bottom: 5px;
+
+      &:hover {
+        border-color: black;
+      }
     }
+  }
+
+  &__section {
+    &--row {
+      display: flex;
+    }
+  }
+
+  &__col {
+    margin-right: 20px;
   }
 
   .open-order {
     margin-top: 15px;
     margin-bottom: 15px;
   }
-  
+
   @include laptop() {
     margin-right: 0;
     margin-left: 90px;
     font-size: 18px;
     width: 780px;
 
+    padding: 43px 25px 15px 51px;
 
-    &__phone-title { 
+    &__phone-title {
       font-size: 18px;
     }
-    
+
     &__title {
       font-size: 18px;
     }
-    
+
     &__mails-link {
       font-size: 22px;
     }
-    
+
     &__socials a {
       font-size: 22px;
     }
     .open-order {
       margin-top: 25px;
-      margin-bottom: 35px;
+      margin-bottom: 5px;
     }
+  }
+
+  @include desktop() {
+    padding: 63px 35px 20px 71px;
   }
 }

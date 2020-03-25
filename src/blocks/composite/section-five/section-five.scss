@@ -58,6 +58,11 @@
       margin-top: -20px;
     }
   }
+  .section-title {
+    @include laptop() {
+      width: 195px;
+    }
+  }
   &__next-link {
     display: none;
 

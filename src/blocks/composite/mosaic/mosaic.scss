@@ -3,6 +3,11 @@
 
   &__inner {
     margin-top: 50px;
+    margin-bottom: 70px;
+
+    @include laptop() {
+      margin-bottom: 0;
+    }
   }
 
   .slick-slide {
@@ -75,8 +80,9 @@
       }
 
     }
-    
+
     a.video:after {
+      opacity: 1;
       background: rgba(255, 237, 0, 0.6) url(../images/icon-play.png) center no-repeat;
     }
 
@@ -136,12 +142,17 @@
     padding: 5px 45px;
     margin-left: 22px;
     transform: translateX(-50%);
-    bottom: 0;
     height: 64px;
     background: black;
     display: flex;
     z-index: 10;
     align-items: center;
+    top: 100%;
+
+    @include laptop() {
+      bottom: 0;
+      top: auto;
+    }
 
     .slick-arrow {
       position: relative;

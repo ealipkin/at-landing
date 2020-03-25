@@ -9,13 +9,14 @@ mixin order-modal()
                 .order-modal__title Давайте обсудим ваше мероприятие
                 .order-modal__text Отправьте заявку и мы свяжемся с вами в ближайшее время
                 input(type="text" placeholder="Ваше имя и фамилия..." name="name" required).order-modal__row.input
-                input(type="text" placeholder="Email..." name="email" required).order-modal__row.input
+                input(type="email" placeholder="Email..." name="email" required).order-modal__row.input
+                input(type="phone" placeholder="Телефон для связи..." name="phone" required).order-modal__row.input
                 input(type="text" placeholder="Тип мероприятия..." name="event_type" required).order-modal__row.input
                 input(type="text" placeholder="Планируемый бюджет..." name="budget" required).order-modal__row.input
                 .order-modal__dates
                     .labeled-select
                         .labeled-select__label День
-                        select(name="day").labeled-select__select
+                        select(name="day").labeled-select__select.labeled-select__select_day
                             option 01
                             option 02
                             option 03
@@ -28,7 +29,7 @@ mixin order-modal()
                             option 10
                     .labeled-select
                         .labeled-select__label Месяц
-                        select(name="month").labeled-select__select
+                        select(name="month").labeled-select__select.labeled-select__select_month
                             option 01
                             option 02
                             option 03
@@ -43,7 +44,7 @@ mixin order-modal()
                             option 12
                     .labeled-select
                         .labeled-select__label Год
-                        select(name="year").labeled-select__select
+                        select(name="year").labeled-select__select.labeled-select__select_year
                             option 2020
                             option 2021
                             option 2022
@@ -53,6 +54,6 @@ mixin order-modal()
                 .order-modal__row
                     button(type="submit").order-modal__button Отправить
             .order-modal__bottom.main-logo
-                img(src="images/logo-black.png")
+                img(src="images/logo-black.png" alt="Логотип АТ")
                 | Андрей и Татьяна
                     

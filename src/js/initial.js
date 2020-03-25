@@ -72,62 +72,8 @@
     $popup.fadeOut();
   });
 
+
   const $orderModal = $('.order-modal');
-  const $orderForm = $('.order-modal__inner');
-  const fieldsMap = {
-    'name': 'Имя',
-    'email': 'Почта',
-    'event_type': 'Тип мероприятия',
-    'budget': 'Бюджет',
-    'day': 'День',
-    'month': 'Месяц',
-    'year': 'Год',
-  };
-  const $formLoader = $('.order-modal__loader');
-  const $formMain = $('.order-modal__main');
-  const $formSuccess = $('.order-modal__success-message');
-  const orderForm = document.querySelector('.order-modal__inner');
-  $orderForm.on('submit', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const $form = $(e.currentTarget);
-    const data = $form.serializeArray();
-    const title = 'Раздел сайта - ' + $('title').text();
-    const text = data.map(item => `${fieldsMap[item.name]} - ${item.value}`);
-    const resultText = text.join(' | \n');
-    const dataText = `${title}.| \n ${resultText}`;
-    $formLoader.fadeIn();
-    $.ajax({
-      type: 'POST',
-      url: '/mail.php',
-      data: {dataText: dataText},
-      success: function success(response) {
-        $formMain.hide();
-        $formSuccess.show();
-        $formLoader.fadeOut();
-        orderForm.reset();
-      },
-      error: function error(data) {
-        orderForm.reset();
-        $formLoader.fadeOut();
-      }
-    });
-  });
-
-  $('.order-modal__close').click(() => {
-    $orderModal.fadeOut();
-  });
-
-  $('.open-order').click((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    $('body').css('overflow', 'visible');
-    $formMain.show();
-    $formSuccess.hide();
-    $orderModal.fadeIn();
-  });
-
-
   document.addEventListener('click', (e) => {
     const target = e.target;
     const isPopupClick = target.classList.contains('offer-info');

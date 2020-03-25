@@ -36,6 +36,17 @@ body.hidden {
   }
 }
 
+.link {
+  color: black;
+  text-decoration: none;
+  padding-bottom: 10px;
+  border-bottom: 1px solid transparent;
+  display: inline-block;
+  transition: border-bottom-color 0.5s ease;
+  &:hover {
+    border-bottom-color: black;
+  }
+}
 
 .next-link {
   background: black;
@@ -83,7 +94,7 @@ body.hidden {
       transform: rotate(-24deg);
     }
   }
-  
+
   @include laptop() {
     font-size: 18px;
     height: 55px;
@@ -149,6 +160,7 @@ body.hidden {
   font-size: 12px;
 
   img {
+    width: 35px;
     display: block;
     margin-right: 10px;
   }
@@ -215,6 +227,9 @@ body.hidden {
   transition: all 0.5s ease;
   padding-left: 20px;
   padding-right: 20px;
+  text-decoration: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
   &:hover {
     background-color: transparent;
@@ -575,3 +590,11 @@ body.hidden {
   }
 }
 
+.download-link {
+  color: black;
+  display: flex;
+  align-items: center;
+  svg {
+    margin-right: 10px;
+  }
+}
