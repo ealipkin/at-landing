@@ -8,9 +8,23 @@
     background: black url(../images/main-bg.jpg) no-repeat top center;
     background-size: cover;
   }
+
+  &--wedding {
+    background-image: url(../images/section-one-wedding.jpg);
+
+    @include laptop() {
+      background-position: bottom center;
+    }
+  }
+
+  &--battle {
+    background-image: url(../images/main-battle.jpg);
+    background-position: center;
+  }
 }
 
 .section-one {
+  min-height: 470px;
   padding-bottom: 60px;
   color: #fff;
   position: relative;
@@ -78,47 +92,6 @@
     min-width: 122px;
     @include laptop() {
       min-width: 160px;
-    }
-  }
-
-  .list {
-    font-size: 12px;
-    font-weight: 100;
-    padding: 0;
-    margin-top: 30px;
-    padding-right: 65px;
-    list-style-type: none;
-
-    @include laptop() {
-      margin-top: 40px;
-      padding-right: 10px;
-    }
-
-    &__item {
-      padding-left: 19px;
-      line-height: 1.5em;
-      margin-bottom: 27px;
-      position: relative;
-
-      @include laptop() {
-        font-size: 18px;
-      }
-
-      &:after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-        left: 0;
-        width: 4px;
-        height: 4px;
-        background: #FFED00;
-
-        @include laptop() {
-          width: 6px;
-          height: 6px;
-        }
-      }
     }
   }
 
@@ -211,50 +184,6 @@
   }
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 35px 20px;
-  position: absolute;
-  left: 0;
-  top: 15px;
-
-  @include laptop() {
-    width: calc(100% - 70px);
-    top: 25px;
-    left: 80px;
-  }
-
-  &__logo {
-    color: white;
-    text-decoration: none;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    padding-right: 31px;
-    position: relative;
-    @include laptop() {
-      font-size: 18px;
-    }
-
-    &:after {
-      content: '';
-      height: 1px;
-      width: 16px;
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      background: white;
-    }
-
-    img {
-      margin-right: 10px;
-    }
-  }
-
-}
 
 .call-link {
   bottom: 25px;
@@ -264,17 +193,26 @@
   border-radius: 15px;
   color: white;
   border: 1px solid currentColor;
-  background: transparent url(../images/call.png) no-repeat center;
+  background: transparent;
   cursor: pointer;
-  transition: background-color 0.5s ease;
+  transition: all 0.5s ease;
   right: 70px;
   position: fixed;
   transform: none;
   left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 
   &:hover {
-    background: #FFED00 url(../images/call-black.png) no-repeat center;
-    color: #FFED00;
+    background: #FFED00;
+    color: black;
+    border-color: #FFED00;
   }
 
 

@@ -1,0 +1,46 @@
+.numbered-list {
+  counter-reset: section;
+  max-width: 445px;
+  margin-left: auto;
+  padding: 0 35px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  @include laptop() {
+    padding: 0;
+    font-size: 22px;
+    margin-right: 15%;
+  }
+
+  &__item {
+    list-style-type: none;
+    position: relative;
+    min-height: 70px;
+    color: white;
+    padding-left: 69px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+
+    &:last-child,
+    &:first-child {
+      line-height: 34px;
+    }
+
+    &:before {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      position: absolute;
+      counter-increment: section;
+      content: counter(section);
+      //font-size: 30px;
+      font-size: 60px;
+      @include laptop() {
+      }
+    }
+
+  }
+}

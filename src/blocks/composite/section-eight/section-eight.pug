@@ -1,2 +1,11 @@
 mixin section-eight()
+
     .section-eight
+        .section-eight__header.container.section-header
+            .section-title Ваша свадьба мечты
+            .section-header__text Пять шагов к незабываемому торжеству
+        //mosaic here
+        .section-eight__list
+            +numbered-list()
+    .next-link.section-three__next-link.move-to-link(data-move-to="4") Наши фото и видео
+        span

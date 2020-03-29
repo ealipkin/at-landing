@@ -15979,10 +15979,30 @@ return Outlayer;
     }
   });
 
+  document.addEventListener('keydown', function (e) {
+    if (e.code === 'Escape') {
+      $('.offer-info').fadeOut();
+      $orderModal.fadeOut();
+      $('.info-block').fadeOut();
+      $('.menu').removeClass('menu_opened');
+      $('body').removeClass('hidden');
+    }
+  });
+
   window.lazyLoadInstance = new LazyLoad({
     elements_selector: '.lazy'
   });
   window.lazyLoadInstance.update();
+
+  var $videoCard = $('.video-card');
+  if ($videoCard) {
+    $videoCard.lightGallery({
+      selector: 'a',
+      thumbnail: false,
+      appendCounterTo: '.lg',
+      addClass: 'no-pages'
+    });
+  }
 })();
 'use strict';
 
@@ -16186,6 +16206,7 @@ return Outlayer;
     for (var _i = dateDay; _i <= maxDay; _i++) {
       $daySelect.append('<option>' + _i + '</option>');
     }
+    $daySelect.val(selectedDate >= dateDay ? selectedDate : dateDay);
 
     var calculatedMonth = selectedYear === currentYear ? currentMonth : 1;
     var maxMonth = 12;

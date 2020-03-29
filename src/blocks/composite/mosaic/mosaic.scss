@@ -49,6 +49,16 @@
     transition: opacity 0.5s ease;
     margin-bottom: 10px;
 
+    .video {
+      .play-btn {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        z-index: 10;
+      }
+    }
+
     a {
       position: absolute;
       width: 100%;
@@ -81,9 +91,9 @@
 
     }
 
-    a.video:after {
-      opacity: 1;
-      background: rgba(255, 237, 0, 0.6) url(../images/icon-play.png) center no-repeat;
+    a.video:after,
+    a.video:hover:after {
+      background: rgba(255, 237, 0, 0.6);
     }
 
     .lazy[data-was-processed] {

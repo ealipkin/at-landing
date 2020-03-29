@@ -104,11 +104,12 @@
 
     const maxDay = selectedParsedDate.daysInMonth();
     const dateDay = selectedEqualCurrent ? currentParsedDate.date() : 1;
-    
+
     $daySelect.html('');
     for (let i = dateDay; i <= maxDay; i++) {
       $daySelect.append(`<option>${i}</option>`);
     }
+    $daySelect.val(selectedDate >= dateDay ? selectedDate : dateDay);
 
     const calculatedMonth = selectedYear === currentYear ? currentMonth : 1;
     const maxMonth = 12;

@@ -1,12 +1,8 @@
 mixin section-one()
-    .header
-        .header__logo.logo
-            img(src="images/logo.png" alt="Логотип АТ")
-            | Андрей и Татьяна
-    section.section-one.container
+    section.section-one.container(class!=attributes.class)
         .section-one__inner
             .title.section-one__title АНДРЕЙ И&nbsp;ТАТЬЯНА
-            .text-big.section-one__text Лучший дуэт ведущих для вашего мероприятия 
+            .text-big.section-one__text Лучший дуэт ведущих для вашего мероприятия
             ul.list
                 li.list__item Мы усердно работаем, чтобы вы&nbsp;отдыхали
                 li.list__item Мы делаем каждое событие ярким и&nbsp;незабываемым
@@ -15,6 +11,7 @@ mixin section-one()
             button(type="button").button.section-one__button.open-order Забронировать
         .section-one__contacts
             a(href="tel:+79823112892" title="+7(982)311-28-92").call-link.section-one__call
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path fill="currentColor" d="M19.8 12.4c0 .3.3.7.7.7.4 0 .7-.3.7-.7 0-4.6-3.8-8.4-8.4-8.4-.3 0-.7.3-.7.7 0 .4.3.7.7.7 3.8-.1 7 3.1 7 7zm-7.7-4.3c0 .3.3.7.7.7 2 0 3.6 1.6 3.6 3.6 0 .3.3.7.7.7s.7-.3.7-.7c0-2.7-2.2-4.9-4.9-4.9-.6 0-.8.2-.8.6zm.6-8c-.3 0-.7.3-.7.7s.3.7.7.7c6 0 11 4.9 11 11 0 .3.3.7.7.7s.7-.3.7-.7C24.9 5.6 19.5.1 12.7.1zm3.5 14.7c-.1-.1-.3-.2-.4-.2s-.3.1-.4.2L14 16.1c-.5.5-1.3.5-1.8 0l-3.1-2.9c-.5-.5-.5-1.3 0-1.8l1.5-1.5c.3-.3.3-.7 0-.9L4.4 2.9c-.1-.1-.3-.2-.4-.2s-.4.1-.5.2c-.1.1-2 2-2.4 2.5C-.1 6.5-.2 9 .6 11.1c1.8 4.6 8 10.2 13.1 13.3.4.3 1.4.5 2.4.5.9 0 2.3-.2 3.4-1.2 1.1-.9 2.3-2.3 2.4-2.3.3-.3.3-.7 0-.8.1-.1-5.7-5.8-5.7-5.8zm2.5 7.9c-.8.8-1.8.8-2.6.8-.9 0-1.7-.3-1.8-.3-5.7-3.4-11-8.7-12.5-12.6-.7-1.8-.4-3.7.1-4.4l2-2 5.2 5.2L8 10.5c-1 1-1 2.6 0 3.6l3.1 2.9c.9.9 2.6.9 3.6 0l.9-.9 4.9 4.9c-.4.5-1.1 1.2-1.8 1.7z" /></svg>
             ul.section-one__socials.socials
                 li
                     a(href="https://vk.com/at.event" target="_blank" rel="noopener") VKONTAKTE
@@ -24,4 +21,3 @@ mixin section-one()
                     a(href="https://www.facebook.com/at.event.ru" target="_blank" rel="noopener") FACEBOOK
                 li
                     a(href="https://www.youtube.com/channel/UC676j7XaxvcC2cYz5Ghf6zA?view_as=subscriber" target="_blank" rel="noopener") YOUTUBE
-            

@@ -1,0 +1,89 @@
+.battle-info {
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    max-width: 600px;
+    @include tablet() {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  .list__item {
+    font-size: 16px;
+    box-sizing: border-box;
+    font-weight: 500;
+    margin-bottom: 10px;
+    @include tablet() {
+      width: 50%;
+      padding-right: 20px;
+      margin-bottom: 30px;
+    }
+  }
+
+  &__tag {
+    font-size: 20px;
+    color: #FFED00;
+    margin-bottom: 21px;
+  }
+
+  &__inside {
+    margin-top: 20px;
+    @include tablet() {
+      margin-top: 3px;
+      padding-left: 23px;
+    }
+  }
+
+  &__text {
+    margin-top: 0;
+    margin-bottom: 19px;
+  }
+
+  &__ending {
+    font-size: 20px;
+    margin-top: 42px;
+  }
+}
+
+
+.video-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  img {
+    max-width: 100%;
+  }
+  @include laptop() {
+    margin-top: 0;
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    transform: translateY(-50%);
+
+    width: 44%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: auto;
+    left: 100%;
+    margin-left: -40%;
+    max-width: 540px;
+  }
+
+  @include desktop() {
+    margin-left: -44%;
+  }
+
+  &__play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
