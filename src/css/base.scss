@@ -29,11 +29,14 @@ body.hidden {
 }
 
 .section-black {
-  background: black;
+  background-color: black;
 
   @include desktop() {
     position: relative;
   }
+}
+.section-white {
+  background-color: white;
 }
 
 .link {

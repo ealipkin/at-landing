@@ -15940,8 +15940,10 @@ return Outlayer;
     var $target = $(e.currentTarget);
     var $section = $target.closest('.section');
     var $popup = $section.find('.info-block');
+    var container = $section.find('.info-list');
     var inner = $popup[0].querySelector('.info-block__inner');
     $popup.fadeIn();
+    container.addClass('info-list_opened');
     var instance = new OverlayScrollbars(inner, {});
     instance.sleep();
     setTimeout(function () {
@@ -15953,6 +15955,7 @@ return Outlayer;
     var $target = $(e.currentTarget);
     var $popup = $target.closest('.info-block');
     $popup.fadeOut();
+    $('.info-list_opened').removeClass('info-list_opened');
   });
 
   var $orderModal = $('.order-modal');
@@ -15984,6 +15987,7 @@ return Outlayer;
       $('.offer-info').fadeOut();
       $orderModal.fadeOut();
       $('.info-block').fadeOut();
+      $('.info-list_opened').removeClass('info-list_opened');
       $('.menu').removeClass('menu_opened');
       $('body').removeClass('hidden');
     }
@@ -16087,6 +16091,30 @@ return Outlayer;
 
   $('.offer-info__button').click(function (e) {
     $(e.currentTarget).closest('.offer-info').fadeOut();
+  });
+})();
+'use strict';
+
+;(function () {
+  $('.open-questions').click(function (e) {
+    var $popup = $('.questions');
+    var inner = $popup[0].querySelector('.questions__content');
+    $('.menu').addClass('hidden');
+    $('body').addClass('hidden');
+    $popup.fadeIn();
+    var instance = new OverlayScrollbars(inner, {});
+    instance.sleep();
+    setTimeout(function () {
+      instance.update(true);
+    }, 1000);
+  });
+
+  $('.questions__close').click(function (e) {
+    var $target = $(e.currentTarget);
+    var $section = $target.closest('.questions');
+    $('.menu').removeClass('hidden');
+    $section.fadeOut();
+    $('body').removeClass('hidden');
   });
 })();
 'use strict';
@@ -16215,30 +16243,6 @@ return Outlayer;
       $monthSelect.append('<option ' + (_i2 === selectedMonth ? 'selected' : '') + '>' + zeroPad(_i2, 2) + '</option>');
     }
   }
-})();
-'use strict';
-
-;(function () {
-  $('.open-questions').click(function (e) {
-    var $popup = $('.questions');
-    var inner = $popup[0].querySelector('.questions__content');
-    $('.menu').addClass('hidden');
-    $('body').addClass('hidden');
-    $popup.fadeIn();
-    var instance = new OverlayScrollbars(inner, {});
-    instance.sleep();
-    setTimeout(function () {
-      instance.update(true);
-    }, 1000);
-  });
-
-  $('.questions__close').click(function (e) {
-    var $target = $(e.currentTarget);
-    var $section = $target.closest('.questions');
-    $('.menu').removeClass('hidden');
-    $section.fadeOut();
-    $('body').removeClass('hidden');
-  });
 })();
 'use strict';
 

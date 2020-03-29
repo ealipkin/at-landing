@@ -58,8 +58,10 @@
       const $target = $(e.currentTarget);
       const $section = $target.closest('.section');
       const $popup = $section.find('.info-block');
+      const container = $section.find('.info-list');
       const inner = $popup[0].querySelector('.info-block__inner');
       $popup.fadeIn();
+      container.addClass('info-list_opened');
       const instance = new OverlayScrollbars(inner, {});
       instance.sleep();
       setTimeout(() => {
@@ -72,6 +74,7 @@
       const $target = $(e.currentTarget);
       const $popup = $target.closest('.info-block');
       $popup.fadeOut();
+      $('.info-list_opened').removeClass('info-list_opened');
     });
 
 
@@ -104,6 +107,7 @@
       $('.offer-info').fadeOut();
       $orderModal.fadeOut();
       $('.info-block').fadeOut();
+      $('.info-list_opened').removeClass('info-list_opened');
       $('.menu').removeClass('menu_opened');
       $('body').removeClass('hidden');
     }

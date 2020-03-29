@@ -17,6 +17,22 @@
       display: block;
     }
   }
+
+  &_wedding {
+    &:after {
+      background-image: url(../images/section-two-wedding.jpg);
+    }
+  }
+
+  &_battle {
+    &:after {
+      background-image: url(../images/contacts-bg.jpg);
+    }
+
+    .section-two__wrapper:before {
+      z-index: 1;
+    }
+  }
 }
 
 .section-two {
@@ -33,11 +49,13 @@
     right: -30px;
     width: 200px;
     font-size: 20px;
-    z-index: 1;
+    z-index: 20;
     bottom: 100px;
 
     &--white {
       color: white;
+      right: 120px;
+      bottom: 150px;
     }
 
     span {
@@ -76,9 +94,10 @@
 
   &__header {
     display: flex;
-
     padding-top: 30px;
+
     @include laptop() {
+      z-index: 2;
       align-items: center;
       padding-top: 0;
       top: 26px;
@@ -129,6 +148,9 @@
   margin-top: 50px;
   box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.25);
 
+  &_opened {
+    z-index: 15;
+  }
 
   @include laptop() {
     position: relative;
@@ -183,15 +205,19 @@
     margin-bottom: 40px;
 
     @include laptop() {
-      margin-left: 10%;
       padding: 38px 20px;
-      padding-right: 35%;
       max-width: 1200px;
+      padding-right: 32%;
+      margin-left: 40px
     }
 
     @include desktop() {
-      padding-right: 30%;
+      padding-right: 26%;
       max-width: 1220px;
+    }
+
+    @media (min-width: 1600px) {
+      margin-left: 10%;
     }
   }
 
