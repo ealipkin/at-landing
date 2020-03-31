@@ -11,3 +11,4 @@ src/pug/_mixins.pug
 src/_images/
 src/images/mosaic/
 src/images/reviews
+!/src/js/_compiled/

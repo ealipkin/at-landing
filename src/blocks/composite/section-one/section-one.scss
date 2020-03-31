@@ -1,7 +1,7 @@
 .section-main {
   position: relative;
 
-  background: black url(../images/main-bg.jpg) no-repeat 70% center;
+  background: black url(../images/main-bg.jpg) no-repeat 65% center;
   background-size: cover;
 
   @include laptop() {
@@ -10,16 +10,30 @@
   }
 
   &--wedding {
-    background-image: url(../images/section-one-wedding.jpg);
-
+    background: url(../images/section-one-wedding.jpg) no-repeat 70% center;
+    background-size: cover;
     @include laptop() {
       background-position: bottom center;
     }
   }
 
   &--battle {
-    background-image: url(../images/main-battle.jpg);
-    background-position: center;
+    background: url(../images/main-battle.jpg) no-repeat center;
+  }
+
+  &:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: black;
+    opacity: 0.4;
+
+    @include laptop() {
+      display: none;
+    }
   }
 }
 
@@ -69,7 +83,7 @@
   }
 
   &__text {
-    font-weight: 100;
+    font-weight: 300;
     font-size: 16px;
     line-height: 1.4em;
     padding-right: 115px;
@@ -78,6 +92,10 @@
       padding-right: 0;
       font-size: 22px;
     }
+  }
+
+  .list {
+    font-weight: 300;
   }
 
   &__buttons {

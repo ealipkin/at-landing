@@ -185,14 +185,24 @@
   }
 
   &--type-2 {
+    margin-bottom: 40px;
+
     @media (max-width: $tablet-width) {
       padding: 20px;
     }
-    margin-bottom: 40px;
-    @include laptop() {
+
+    @media (min-width: $tablet-width) and (max-width: $desktop-width) {
+      min-height: 0;
+      padding: 20px 20px 60px;
+      max-width: 95%;
+      margin-left: 70px;
+      margin-top: 100px;
+    }
+
+    @include desktop() {
       padding-top: 40px;
       min-height: 0;
-
+      max-width: 55%;
       .list__item {
         font-size: 22px;
         margin-bottom: 50px;

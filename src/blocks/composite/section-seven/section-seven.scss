@@ -16,6 +16,7 @@
     background-size: cover;
     z-index: 0;
     opacity: 0.5;
+    display: none;
     @include laptop() {
       display: none;
     }
@@ -75,21 +76,30 @@
     margin-bottom: 37px;
   }
 
-  @include laptop() {
-    padding-left: 40px;
+  @media (min-width: 720px) {
     &__image {
       display: block;
       width: 100%;
       max-width: 50%;
       position: absolute;
-      left: 850px;
       top: 50%;
       transform: translateY(-50%);
-      margin-top: -21px;
+
+      margin-top: -61px;
+      left: auto;
+      right: 0;
 
       img {
         width: 100%;
       }
+    }
+  }
+
+  @include laptop() {
+    padding-left: 40px;
+
+    &__image {
+      margin-top: -100px;
     }
     &__title {
       font-size: 32px;
@@ -103,6 +113,7 @@
       padding-left: 66px;
       font-size: 16px;
       margin-top: 25px;
+      margin-bottom: 15px;
       width: 350px;
     }
 
@@ -135,6 +146,12 @@
   @include desktop() {
     &__text {
       margin-bottom: 60px;
+    }
+
+    &__image {
+      left: auto;
+      right: 0;
+      margin-top: -110px;
     }
   }
 }

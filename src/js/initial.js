@@ -83,6 +83,7 @@
     const target = e.target;
     const isPopupClick = target.classList.contains('offer-info');
     const isInsidePopup = target.closest('.offer-info');
+
     if (!isPopupClick && !isInsidePopup) {
       $('.offer-info').fadeOut();
     }
@@ -96,22 +97,35 @@
     const isInsideMenu = target.closest('.menu');
 
     if (!isMenu && !isInsideMenu) {
-
       $('.menu').removeClass('menu_opened');
       $('body').removeClass('hidden');
     }
+
+    const isInfoBlock = target.classList.contains('info-block');
+    const isInsideInfoBlock = target.closest('.info-block');
+    const isOpenedLink = target.classList.contains('info-list__link');
+
+    if (!isInfoBlock && !isInsideInfoBlock && !isOpenedLink) {
+      closeInfoBlock();
+    }
   });
+
 
   document.addEventListener('keydown', (e) => {
     if (e.code === 'Escape') {
       $('.offer-info').fadeOut();
       $orderModal.fadeOut();
-      $('.info-block').fadeOut();
-      $('.info-list_opened').removeClass('info-list_opened');
       $('.menu').removeClass('menu_opened');
       $('body').removeClass('hidden');
+      closeInfoBlock();
     }
   });
+
+  function closeInfoBlock() {
+    $('.info-block').fadeOut();
+    $('.info-list_opened').removeClass('info-list_opened');
+  }
+
 
   window.lazyLoadInstance = new LazyLoad({
     elements_selector: '.lazy',
@@ -119,7 +133,7 @@
   window.lazyLoadInstance.update();
 
   const $videoCard = $('.video-card');
-  if($videoCard) {
+  if ($videoCard) {
     $videoCard.lightGallery({
       selector: 'a',
       thumbnail: false,
