@@ -54,8 +54,8 @@
 
     &--white {
       color: white;
-      right: 120px;
-      bottom: 150px;
+      right: 50px;
+      bottom: 110px;
     }
 
     span {
@@ -217,17 +217,19 @@
     @include laptop() {
       padding: 38px 20px;
       max-width: 1200px;
-      padding-right: 32%;
-      margin-left: 40px
+      margin-left: 40px;
+      padding-right: 36%;
     }
 
     @include desktop() {
-      padding-right: 26%;
+      padding-left: 40px;
       max-width: 1220px;
+      padding-right: 24%;
     }
 
     @media (min-width: 1600px) {
       margin-left: 10%;
+      padding-right: 21%;
     }
   }
 

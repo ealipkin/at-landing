@@ -10,15 +10,42 @@
   }
 
   &--wedding {
-    background: url(../images/section-one-wedding.jpg) no-repeat 70% center;
-    background-size: cover;
+    background: url(../images/section-one-wedding.jpg) no-repeat 60% 75%;
+    background-size: 400%;
+
+    @media (min-width: 400px) {
+      background-position: 62% 80%;
+      background-size: 330%;
+    }
+
+    @media (min-width: 600px) {
+      background-position: 65% 100%;
+      background-size: 200%;
+    }
+
+    @include tablet() {
+      background-position: 70% center;
+      background-size: cover;
+    }
+
+
     @include laptop() {
       background-position: bottom center;
     }
   }
 
   &--battle {
-    background: url(../images/main-battle.jpg) no-repeat center;
+    background: url(../images/main-battle.jpg) no-repeat 65% 40%;
+    background-size: 340%;
+
+    @media (min-width: 450px) {
+      background-position: 60% center;
+      background-size: cover;
+    }
+    @include tablet() {
+      background-position: center;
+      background-size: cover;
+    }
   }
 
   &:before {
@@ -39,12 +66,16 @@
 
 .section-one {
   min-height: 470px;
-  padding-bottom: 60px;
+  padding-bottom: 40px;
   color: #fff;
   position: relative;
   z-index: 1;
-  padding-top: 80px;
+  padding-top: 100px;
 
+  top: 80px;
+  @include tablet() {
+    top: auto;
+  }
   @include laptop() {
     position: relative;
 
@@ -72,7 +103,7 @@
     font-weight: bold;
     //margin-top: 89px;
     padding-right: 120px;
-    margin-bottom: 45px;
+    margin-bottom: 25px;
 
 
     @include laptop() {
@@ -96,10 +127,23 @@
 
   .list {
     font-weight: 300;
+    margin-top: 20px;
+
+    @include tablet() {
+      margin-top: 30px;
+    }
+
+    .list__item {
+      margin-bottom: 17px;
+
+      @include tablet() {
+        margin-bottom: 27px;
+      }
+    }
   }
 
   &__buttons {
-    margin-top: 45px;
+    margin-top: 35px;
     @include laptop() {
       margin-top: 52px;
     }
@@ -120,10 +164,13 @@
     margin-top: -20px;
     max-height: 70vh;
     top: 29px;
-    transform: none;
     margin-bottom: 0;
     right: 11px;
+    transform: translateY(30px);
 
+    @include tablet() {
+      transform: none;
+    }
     @include laptop() {
       max-height: 90vh;
       top: 50%;
@@ -221,6 +268,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  top: 40px;
 
   svg {
     width: 20px;
@@ -233,10 +281,11 @@
     border-color: #FFED00;
   }
 
-
-  top: 10px;
   margin-left: -100px;
 
+  @include tablet() {
+    //top: 20px;
+  }
   @include laptop() {
     background-size: 16px;
     top: -4px;
