@@ -15880,11 +15880,89 @@ return Outlayer;
 
 }));
 
-'use strict';
+(function($) {
+  var pubsub = $({});
+
+  $.subscribe = function() {
+    pubsub.on.apply(pubsub, arguments);
+  };
+  $.unsubscribe = function() {
+    pubsub.off.apply(pubsub, arguments);
+  };
+  $.publish = function() {
+    pubsub.trigger.apply(pubsub, arguments);
+  };
+
+  pubStack = []; // стэк событий опубликованных до инициализации всех виджетов
+
+  $.initWidgets = function($block) {
+    // виджеты могут быть иницилизированны как внутри всей страницы, так и внутри конкретного блока
+    var $context = $block || $('html');
+
+    // Если какой-либо виджет публикует событие при инициализации,
+    // в момент до того как будет инициализирован виджет который подпишется на это событие
+    // то последний не сможет обработать это событие, т.к. оно произойдет раньше подписки.
+    // Для это переопределяем метод publish,
+    // что все события произошедшие до момента иницилизации всех виджетов попали в массив,
+    // из которого мы их вызовем после загрузки всех виджетов
+    $.publish = function(eventName, data) {
+      pubStack.push({eventName: eventName, data: data});
+    };
+
+    $.each($context.find('.js-widget'), function() {
+      var $this = $(this),
+        config = this.onclick ? this.onclick() : {};
+
+      for (var widget in config) {
+        if ($.fn[widget]) {
+          $this[widget](config[widget])
+          .removeClass('js-widget')
+          .addClass('js-widget-inited');
+        }
+      }
+    });
+
+    // возвращаем в исходное состояние
+    $.publish = function() {
+      pubsub.trigger.apply(pubsub, arguments);
+    };
+
+    // вызываем "скопившиеся" опубликованные события
+    $.each(pubStack, function() {
+      $.publish(this.eventName, this.data);
+    });
+
+    // отчищаем стэк опубликованных событий
+    pubStack.length = 0;
+  };
+  $.destroyWidgets = function($block) {
+    // виджеты могут быть удалены как внутри всего сайт, так и внутри конкретного блока
+    var $context = $block || $('html');
+
+    $.each($context.find('.js-widget-inited'), function() {
+      var $this = $(this),
+        config = this.onclick ? this.onclick() : {};
+
+      for (var widget in config) {
+        if ($.fn[widget]) {
+          $this[widget]('destroy')
+          .removeClass('js-widget-inited')
+          .addClass('js-widget');
+        }
+      }
+    });
+  };
+
+}(jQuery));
+
+$(function() {
+  // поиск и инициализация всех виджетов на странице
+  $.initWidgets();
+});
+"use strict";
 
 (function () {
   $(document).ready(function () {
-
     $('.page-container').fullpage({
       //options here
       licenseKey: '3B638E30-7BAE4068-BFE661C6-783CCD7A',
@@ -15901,6 +15979,7 @@ return Outlayer;
         var menu = document.querySelector('.menu');
         $('.offer-info').fadeOut();
         $('body').removeClass('hidden');
+
         if (!isBlack) {
           menu.classList.add('menu_black');
         } else {
@@ -15919,7 +15998,8 @@ return Outlayer;
         $('body').removeClass('hidden');
         $('.menu').removeClass('hidden');
         $('.menu__link_active').removeClass('menu__link_active');
-        $('.menu__link[href="#' + anchor + '"]').addClass('menu__link_active');
+        $(".menu__link[href=\"#".concat(anchor, "\"]")).addClass('menu__link_active');
+
         if (!isBlack) {
           menu.classList.add('menu_black');
         } else {
@@ -15930,12 +16010,10 @@ return Outlayer;
       }
     });
   });
-
   $('.move-to-link').click(function (e) {
     var moveTo = e.currentTarget.dataset.moveTo;
     fullpage_api.moveTo(moveTo);
   });
-
   $('.info-list__link').click(function (e) {
     var $target = $(e.currentTarget);
     var $section = $target.closest('.section');
@@ -15950,14 +16028,12 @@ return Outlayer;
       instance.update(true);
     }, 1000);
   });
-
   $('.info-block__close').click(function (e) {
     var $target = $(e.currentTarget);
     var $popup = $target.closest('.info-block');
     $popup.fadeOut();
     $('.info-list_opened').removeClass('info-list_opened');
   });
-
   var $orderModal = $('.order-modal');
   document.addEventListener('click', function (e) {
     var target = e.target;
@@ -15967,12 +16043,14 @@ return Outlayer;
     if (!isPopupClick && !isInsidePopup) {
       $('.offer-info').fadeOut();
     }
+
     var isOrderModal = target.classList.contains('order-modal');
     var isInsideModal = target.closest('.order-modal');
 
     if (!isOrderModal && !isInsideModal) {
       $orderModal.fadeOut();
     }
+
     var isMenu = target.classList.contains('menu');
     var isInsideMenu = target.closest('.menu');
 
@@ -15989,7 +16067,6 @@ return Outlayer;
       closeInfoBlock();
     }
   });
-
   document.addEventListener('keydown', function (e) {
     if (e.code === 'Escape') {
       $('.offer-info').fadeOut();
@@ -16009,8 +16086,8 @@ return Outlayer;
     elements_selector: '.lazy'
   });
   window.lazyLoadInstance.update();
-
   var $videoCard = $('.video-card');
+
   if ($videoCard) {
     $videoCard.lightGallery({
       selector: 'a',
@@ -16020,7 +16097,7 @@ return Outlayer;
     });
   }
 })();
-'use strict';
+"use strict";
 
 (function () {
   $('.menu__link').click(function (e) {
@@ -16038,6 +16115,7 @@ return Outlayer;
     e.stopPropagation();
     var $target = $(e.currentTarget);
     var $menu = $target.closest('.menu');
+
     if ($menu.hasClass('menu_opened')) {
       $menu.removeClass('menu_opened');
       $('body').removeClass('hidden');
@@ -16047,17 +16125,17 @@ return Outlayer;
     }
   });
 })();
-'use strict';
+"use strict";
 
-;(function () {
+;
+
+(function () {
   var $slider = $('.mosaic__inner');
-
   $('.mosaic').lightGallery({
     selector: '.mosaic__row a',
     thumbnail: false,
     appendCounterTo: '.lg'
   });
-
   $slider.slick({
     dots: true,
     arrows: true,
@@ -16074,15 +16152,17 @@ return Outlayer;
     centerPadding: '15%'
   });
 })();
-'use strict';
+"use strict";
 
-;(function () {
+;
+
+(function () {
   $('.offers__item').click(function (e) {
     e.preventDefault();
     e.stopPropagation();
     var $target = $(e.currentTarget);
     var id = $target.find('.offers__button').data('id');
-    var $popup = $('.offer-info[data-id="' + id + '"]');
+    var $popup = $(".offer-info[data-id=\"".concat(id, "\"]"));
     var inner = $popup[0].querySelector('.offer-info__text');
     $('.offer-info').fadeOut();
     $popup.css('display', 'flex').hide().fadeIn();
@@ -16093,22 +16173,21 @@ return Outlayer;
     }, 1000);
     $('body').addClass('hidden');
   });
-
   $('.offer-info__back .close-btn').click(function (e) {
     var $target = $(e.currentTarget);
     var $popup = $target.closest('.offer-info');
     $popup.fadeOut();
     $('body').addClass('hidden');
   });
-
   $('.offer-info__button').click(function (e) {
     $(e.currentTarget).closest('.offer-info').fadeOut();
   });
 })();
-'use strict';
+"use strict";
 
-;(function () {
+;
 
+(function () {
   var $orderModal = $('.order-modal');
   var $orderForm = $('.order-modal__inner');
   var fieldsMap = {
@@ -16131,15 +16210,17 @@ return Outlayer;
     var data = $form.serializeArray();
     var title = 'Раздел сайта - ' + $('title').text();
     var text = data.map(function (item) {
-      return fieldsMap[item.name] + ' - ' + item.value;
+      return "".concat(fieldsMap[item.name], " - ").concat(item.value);
     });
     var resultText = text.join(' | \n');
-    var dataText = title + '.| \n ' + resultText;
+    var dataText = "".concat(title, ".| \n ").concat(resultText);
     $formLoader.fadeIn();
     $.ajax({
       type: 'POST',
       url: '/mail.php',
-      data: { dataText: dataText },
+      data: {
+        dataText: dataText
+      },
       success: function success(response) {
         $formMain.hide();
         $formSuccess.show();
@@ -16152,11 +16233,9 @@ return Outlayer;
       }
     });
   });
-
   $('.order-modal__close').click(function () {
     $orderModal.fadeOut();
   });
-
   $('.open-order').click(function (e) {
     e.preventDefault();
     e.stopPropagation();
@@ -16165,25 +16244,27 @@ return Outlayer;
     $formSuccess.hide();
     $orderModal.fadeIn();
   });
-
   var $daySelect = $('.labeled-select__select_day');
   var $monthSelect = $('.labeled-select__select_month');
   var $yearSelect = $('.labeled-select__select_year');
   var now = new Date();
   var calculatedYear = now.getFullYear();
   var maxYear = calculatedYear + 10;
-
   $yearSelect.html('');
+
   for (var i = calculatedYear; i <= maxYear; i++) {
-    $yearSelect.append('<option>' + i + '</option>');
+    $yearSelect.append("<option>".concat(i, "</option>"));
   }
+
   updateDates();
 
   function zeroPad(num, size) {
     var s = String(num);
+
     while (s.length < (size || 2)) {
       s = "0" + s;
     }
+
     return s;
   }
 
@@ -16205,38 +16286,37 @@ return Outlayer;
     var currentDate = now.getDate();
     var currentMonth = now.getMonth() + 1;
     var currentYear = now.getFullYear();
-
     var selectedDate = Number($daySelect.val());
     var selectedMonth = Number($monthSelect.val());
     var selectedYear = Number($yearSelect.val());
-
-    var selectedParsedDate = dayjs(selectedYear + '-' + selectedMonth + '-' + selectedDate);
+    var selectedParsedDate = dayjs("".concat(selectedYear, "-").concat(selectedMonth, "-").concat(selectedDate));
     var currentParsedDate = dayjs(now);
-
     var selectedEqualCurrent = selectedYear === currentYear && selectedMonth === currentMonth;
-
     var maxDay = selectedParsedDate.daysInMonth();
     var dateDay = selectedEqualCurrent ? currentParsedDate.date() : 1;
-
     $daySelect.html('');
-    for (var _i = dateDay; _i <= maxDay; _i++) {
-      $daySelect.append('<option>' + _i + '</option>');
-    }
-    $daySelect.val(selectedDate >= dateDay ? selectedDate : dateDay);
 
+    for (var _i = dateDay; _i <= maxDay; _i++) {
+      $daySelect.append("<option>".concat(_i, "</option>"));
+    }
+
+    $daySelect.val(selectedDate >= dateDay ? selectedDate : dateDay);
     var calculatedMonth = selectedYear === currentYear ? currentMonth : 1;
     var maxMonth = 12;
     $monthSelect.html('');
+
     for (var _i2 = calculatedMonth; _i2 <= maxMonth; _i2++) {
-      $monthSelect.append('<option ' + (_i2 === selectedMonth ? 'selected' : '') + '>' + zeroPad(_i2, 2) + '</option>');
+      $monthSelect.append("<option ".concat(_i2 === selectedMonth ? 'selected' : '', ">").concat(zeroPad(_i2, 2), "</option>"));
     }
   }
 })();
-'use strict';
+"use strict";
 
-;(function () {
+;
+
+(function () {
   $('.open-questions').click(function (e) {
-    var $popup = $('.questions');
+    var $popup = $(".questions");
     var inner = $popup[0].querySelector('.questions__content');
     $('.menu').addClass('hidden');
     $('body').addClass('hidden');
@@ -16247,7 +16327,6 @@ return Outlayer;
       instance.update(true);
     }, 1000);
   });
-
   $('.questions__close').click(function (e) {
     var $target = $(e.currentTarget);
     var $section = $target.closest('.questions');
@@ -16256,9 +16335,11 @@ return Outlayer;
     $('body').removeClass('hidden');
   });
 })();
-'use strict';
+"use strict";
 
-;(function () {
+;
+
+(function () {
   var slider = $('.slider__inner');
   slider.on('afterChange', function (event, currentSlide) {
     var slides = document.querySelectorAll('.slider__text');
@@ -16270,8 +16351,7 @@ return Outlayer;
       }, 1000);
     });
   });
-  slider.on('init', function (event) {
-    // console.log(event);
+  slider.on('init', function (event) {// console.log(event);
   });
   slider.slick({
     dots: true,

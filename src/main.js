@@ -6642,6 +6642,8 @@ void 0!==c?null===c?void r.removeAttr(a,b):e&&"set"in e&&void 0!==(d=e.set(a,c,b
         return PLUGIN;
     }
 ));
+!function(t,n){"object"==typeof exports&&"undefined"!=typeof module?module.exports=n():"function"==typeof define&&define.amd?define(n):t.dayjs=n()}(this,function(){"use strict";var t="millisecond",n="second",e="minute",r="hour",i="day",s="week",u="month",o="quarter",a="year",h=/^(\d{4})-?(\d{1,2})-?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d{1,3})?$/,f=/\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,c=function(t,n,e){var r=String(t);return!r||r.length>=n?t:""+Array(n+1-r.length).join(e)+t},d={s:c,z:function(t){var n=-t.utcOffset(),e=Math.abs(n),r=Math.floor(e/60),i=e%60;return(n<=0?"+":"-")+c(r,2,"0")+":"+c(i,2,"0")},m:function(t,n){var e=12*(n.year()-t.year())+(n.month()-t.month()),r=t.clone().add(e,u),i=n-r<0,s=t.clone().add(e+(i?-1:1),u);return Number(-(e+(n-r)/(i?r-s:s-r))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(h){return{M:u,y:a,w:s,d:i,h:r,m:e,s:n,ms:t,Q:o}[h]||String(h||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},$={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},l="en",m={};m[l]=$;var y=function(t){return t instanceof v},M=function(t,n,e){var r;if(!t)return l;if("string"==typeof t)m[t]&&(r=t),n&&(m[t]=n,r=t);else{var i=t.name;m[i]=t,r=i}return e||(l=r),r},g=function(t,n,e){if(y(t))return t.clone();var r=n?"string"==typeof n?{format:n,pl:e}:n:{};return r.date=t,new v(r)},D=d;D.l=M,D.i=y,D.w=function(t,n){return g(t,{locale:n.$L,utc:n.$u,$offset:n.$offset})};var v=function(){function c(t){this.$L=this.$L||M(t.locale,null,!0),this.parse(t)}var d=c.prototype;return d.parse=function(t){this.$d=function(t){var n=t.date,e=t.utc;if(null===n)return new Date(NaN);if(D.u(n))return new Date;if(n instanceof Date)return new Date(n);if("string"==typeof n&&!/Z$/i.test(n)){var r=n.match(h);if(r)return e?new Date(Date.UTC(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)):new Date(r[1],r[2]-1,r[3]||1,r[4]||0,r[5]||0,r[6]||0,r[7]||0)}return new Date(n)}(t),this.init()},d.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds()},d.$utils=function(){return D},d.isValid=function(){return!("Invalid Date"===this.$d.toString())},d.isSame=function(t,n){var e=g(t);return this.startOf(n)<=e&&e<=this.endOf(n)},d.isAfter=function(t,n){return g(t)<this.startOf(n)},d.isBefore=function(t,n){return this.endOf(n)<g(t)},d.$g=function(t,n,e){return D.u(t)?this[n]:this.set(e,t)},d.year=function(t){return this.$g(t,"$y",a)},d.month=function(t){return this.$g(t,"$M",u)},d.day=function(t){return this.$g(t,"$W",i)},d.date=function(t){return this.$g(t,"$D","date")},d.hour=function(t){return this.$g(t,"$H",r)},d.minute=function(t){return this.$g(t,"$m",e)},d.second=function(t){return this.$g(t,"$s",n)},d.millisecond=function(n){return this.$g(n,"$ms",t)},d.unix=function(){return Math.floor(this.valueOf()/1e3)},d.valueOf=function(){return this.$d.getTime()},d.startOf=function(t,o){var h=this,f=!!D.u(o)||o,c=D.p(t),d=function(t,n){var e=D.w(h.$u?Date.UTC(h.$y,n,t):new Date(h.$y,n,t),h);return f?e:e.endOf(i)},$=function(t,n){return D.w(h.toDate()[t].apply(h.toDate(),(f?[0,0,0,0]:[23,59,59,999]).slice(n)),h)},l=this.$W,m=this.$M,y=this.$D,M="set"+(this.$u?"UTC":"");switch(c){case a:return f?d(1,0):d(31,11);case u:return f?d(1,m):d(0,m+1);case s:var g=this.$locale().weekStart||0,v=(l<g?l+7:l)-g;return d(f?y-v:y+(6-v),m);case i:case"date":return $(M+"Hours",0);case r:return $(M+"Minutes",1);case e:return $(M+"Seconds",2);case n:return $(M+"Milliseconds",3);default:return this.clone()}},d.endOf=function(t){return this.startOf(t,!1)},d.$set=function(s,o){var h,f=D.p(s),c="set"+(this.$u?"UTC":""),d=(h={},h[i]=c+"Date",h.date=c+"Date",h[u]=c+"Month",h[a]=c+"FullYear",h[r]=c+"Hours",h[e]=c+"Minutes",h[n]=c+"Seconds",h[t]=c+"Milliseconds",h)[f],$=f===i?this.$D+(o-this.$W):o;if(f===u||f===a){var l=this.clone().set("date",1);l.$d[d]($),l.init(),this.$d=l.set("date",Math.min(this.$D,l.daysInMonth())).toDate()}else d&&this.$d[d]($);return this.init(),this},d.set=function(t,n){return this.clone().$set(t,n)},d.get=function(t){return this[D.p(t)]()},d.add=function(t,o){var h,f=this;t=Number(t);var c=D.p(o),d=function(n){var e=g(f);return D.w(e.date(e.date()+Math.round(n*t)),f)};if(c===u)return this.set(u,this.$M+t);if(c===a)return this.set(a,this.$y+t);if(c===i)return d(1);if(c===s)return d(7);var $=(h={},h[e]=6e4,h[r]=36e5,h[n]=1e3,h)[c]||1,l=this.$d.getTime()+t*$;return D.w(l,this)},d.subtract=function(t,n){return this.add(-1*t,n)},d.format=function(t){var n=this;if(!this.isValid())return"Invalid Date";var e=t||"YYYY-MM-DDTHH:mm:ssZ",r=D.z(this),i=this.$locale(),s=this.$H,u=this.$m,o=this.$M,a=i.weekdays,h=i.months,c=function(t,r,i,s){return t&&(t[r]||t(n,e))||i[r].substr(0,s)},d=function(t){return D.s(s%12||12,t,"0")},$=i.meridiem||function(t,n,e){var r=t<12?"AM":"PM";return e?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:o+1,MM:D.s(o+1,2,"0"),MMM:c(i.monthsShort,o,h,3),MMMM:h[o]||h(this,e),D:this.$D,DD:D.s(this.$D,2,"0"),d:String(this.$W),dd:c(i.weekdaysMin,this.$W,a,2),ddd:c(i.weekdaysShort,this.$W,a,3),dddd:a[this.$W],H:String(s),HH:D.s(s,2,"0"),h:d(1),hh:d(2),a:$(s,u,!0),A:$(s,u,!1),m:String(u),mm:D.s(u,2,"0"),s:String(this.$s),ss:D.s(this.$s,2,"0"),SSS:D.s(this.$ms,3,"0"),Z:r};return e.replace(f,function(t,n){return n||l[t]||r.replace(":","")})},d.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},d.diff=function(t,h,f){var c,d=D.p(h),$=g(t),l=6e4*($.utcOffset()-this.utcOffset()),m=this-$,y=D.m(this,$);return y=(c={},c[a]=y/12,c[u]=y,c[o]=y/3,c[s]=(m-l)/6048e5,c[i]=(m-l)/864e5,c[r]=m/36e5,c[e]=m/6e4,c[n]=m/1e3,c)[d]||m,f?y:D.a(y)},d.daysInMonth=function(){return this.endOf(u).$D},d.$locale=function(){return m[this.$L]},d.locale=function(t,n){if(!t)return this.$L;var e=this.clone(),r=M(t,n,!0);return r&&(e.$L=r),e},d.clone=function(){return D.w(this.$d,this)},d.toDate=function(){return new Date(this.valueOf())},d.toJSON=function(){return this.isValid()?this.toISOString():null},d.toISOString=function(){return this.$d.toISOString()},d.toString=function(){return this.$d.toUTCString()},c}();return g.prototype=v.prototype,g.extend=function(t,n){return t(n,v,g),g},g.locale=M,g.isDayjs=y,g.unix=function(t){return g(1e3*t)},g.en=m[l],g.Ls=m,g});
+
 /*!
  * fullPage 3.0.8 - Extensions 0.1.9
  * https://github.com/alvarotrigo/fullPage.js
@@ -15878,11 +15880,89 @@ return Outlayer;
 
 }));
 
-'use strict';
+(function($) {
+  var pubsub = $({});
+
+  $.subscribe = function() {
+    pubsub.on.apply(pubsub, arguments);
+  };
+  $.unsubscribe = function() {
+    pubsub.off.apply(pubsub, arguments);
+  };
+  $.publish = function() {
+    pubsub.trigger.apply(pubsub, arguments);
+  };
+
+  pubStack = []; // стэк событий опубликованных до инициализации всех виджетов
+
+  $.initWidgets = function($block) {
+    // виджеты могут быть иницилизированны как внутри всей страницы, так и внутри конкретного блока
+    var $context = $block || $('html');
+
+    // Если какой-либо виджет публикует событие при инициализации,
+    // в момент до того как будет инициализирован виджет который подпишется на это событие
+    // то последний не сможет обработать это событие, т.к. оно произойдет раньше подписки.
+    // Для это переопределяем метод publish,
+    // что все события произошедшие до момента иницилизации всех виджетов попали в массив,
+    // из которого мы их вызовем после загрузки всех виджетов
+    $.publish = function(eventName, data) {
+      pubStack.push({eventName: eventName, data: data});
+    };
+
+    $.each($context.find('.js-widget'), function() {
+      var $this = $(this),
+        config = this.onclick ? this.onclick() : {};
+
+      for (var widget in config) {
+        if ($.fn[widget]) {
+          $this[widget](config[widget])
+          .removeClass('js-widget')
+          .addClass('js-widget-inited');
+        }
+      }
+    });
+
+    // возвращаем в исходное состояние
+    $.publish = function() {
+      pubsub.trigger.apply(pubsub, arguments);
+    };
+
+    // вызываем "скопившиеся" опубликованные события
+    $.each(pubStack, function() {
+      $.publish(this.eventName, this.data);
+    });
+
+    // отчищаем стэк опубликованных событий
+    pubStack.length = 0;
+  };
+  $.destroyWidgets = function($block) {
+    // виджеты могут быть удалены как внутри всего сайт, так и внутри конкретного блока
+    var $context = $block || $('html');
+
+    $.each($context.find('.js-widget-inited'), function() {
+      var $this = $(this),
+        config = this.onclick ? this.onclick() : {};
+
+      for (var widget in config) {
+        if ($.fn[widget]) {
+          $this[widget]('destroy')
+          .removeClass('js-widget-inited')
+          .addClass('js-widget');
+        }
+      }
+    });
+  };
+
+}(jQuery));
+
+$(function() {
+  // поиск и инициализация всех виджетов на странице
+  $.initWidgets();
+});
+"use strict";
 
 (function () {
   $(document).ready(function () {
-
     $('.page-container').fullpage({
       //options here
       licenseKey: '3B638E30-7BAE4068-BFE661C6-783CCD7A',
@@ -15899,6 +15979,7 @@ return Outlayer;
         var menu = document.querySelector('.menu');
         $('.offer-info').fadeOut();
         $('body').removeClass('hidden');
+
         if (!isBlack) {
           menu.classList.add('menu_black');
         } else {
@@ -15917,7 +15998,8 @@ return Outlayer;
         $('body').removeClass('hidden');
         $('.menu').removeClass('hidden');
         $('.menu__link_active').removeClass('menu__link_active');
-        $('.menu__link[href="#' + anchor + '"]').addClass('menu__link_active');
+        $(".menu__link[href=\"#".concat(anchor, "\"]")).addClass('menu__link_active');
+
         if (!isBlack) {
           menu.classList.add('menu_black');
         } else {
@@ -15928,117 +16010,94 @@ return Outlayer;
       }
     });
   });
-
   $('.move-to-link').click(function (e) {
     var moveTo = e.currentTarget.dataset.moveTo;
     fullpage_api.moveTo(moveTo);
   });
-
   $('.info-list__link').click(function (e) {
     var $target = $(e.currentTarget);
     var $section = $target.closest('.section');
     var $popup = $section.find('.info-block');
+    var container = $section.find('.info-list');
     var inner = $popup[0].querySelector('.info-block__inner');
     $popup.fadeIn();
+    container.addClass('info-list_opened');
     var instance = new OverlayScrollbars(inner, {});
     instance.sleep();
     setTimeout(function () {
       instance.update(true);
     }, 1000);
   });
-
   $('.info-block__close').click(function (e) {
     var $target = $(e.currentTarget);
     var $popup = $target.closest('.info-block');
     $popup.fadeOut();
+    $('.info-list_opened').removeClass('info-list_opened');
   });
-
   var $orderModal = $('.order-modal');
-  var $orderForm = $('.order-modal__inner');
-
-  $orderForm.on('submit', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    var $target = $(e.currentTarget);
-    var data = $target.serializeArray();
-    // send data here
-    $target.get(0).reset();
-    console.log(data);
-    // $target.fadeOut();
-
-    // dataText += '|\n';
-    /*
-    var form = $(this).parent();
-    var nameField = $(form).find('.f-name');
-    var name = nameField.attr('name') + ': ' + nameField.val();
-    var phoneField = $(form).find('.f-phone');
-    var phone = phoneField.attr('name') + ': ' + phoneField.val();
-    var mailField = $(form).find('.f-mail');
-    var mail = mailField.attr('name') + ': ' + mailField.val();
-    var timeField = $(form).find('.f-time');
-    var time = timeField.attr('name') + ': ' + timeField.val();
-    var type = $(form).data('type');
-    var preloader = $(form).children('.form-preloader');
-    var title = 'Раздел сайта - ' + $('title').text();
-    if (checkForm(form)) {
-      $(preloader).height($(form).height());
-      $(preloader).fadeIn();
-      $(form).children().attr('disabled', 'disabled');
-      var dataText = getSendText(type, name, title, phone, time);
-      $.ajax({
-        type: 'POST', url: '/mail.php', data: { dataText: dataText }, success: function success(response) {
-          $(form).children('button').hide();
-          $(preloader).fadeOut();
-          $(form).children('.form-message').text('Заявка успешно отправлена!').show();
-        }, error: function error(data) {
-          $(preloader).fadeOut();
-          $(form).children().removeAttr('disabled', 'disabled');
-          $(form).children('.form-message').text('Произошла ошибка, попробуйте еще раз.').show();
-        }
-      });
-    }*/
-  });
-
-  $('.order-modal__close').click(function () {
-    $orderModal.fadeOut();
-  });
-
-  $('.open-order').click(function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    $('body').css('overflow', 'visible');
-    $orderModal.fadeIn();
-  });
-
   document.addEventListener('click', function (e) {
     var target = e.target;
     var isPopupClick = target.classList.contains('offer-info');
     var isInsidePopup = target.closest('.offer-info');
+
     if (!isPopupClick && !isInsidePopup) {
       $('.offer-info').fadeOut();
     }
+
     var isOrderModal = target.classList.contains('order-modal');
     var isInsideModal = target.closest('.order-modal');
 
     if (!isOrderModal && !isInsideModal) {
       $orderModal.fadeOut();
     }
+
     var isMenu = target.classList.contains('menu');
     var isInsideMenu = target.closest('.menu');
 
     if (!isMenu && !isInsideMenu) {
-
       $('.menu').removeClass('menu_opened');
       $('body').removeClass('hidden');
     }
+
+    var isInfoBlock = target.classList.contains('info-block');
+    var isInsideInfoBlock = target.closest('.info-block');
+    var isOpenedLink = target.classList.contains('info-list__link');
+
+    if (!isInfoBlock && !isInsideInfoBlock && !isOpenedLink) {
+      closeInfoBlock();
+    }
   });
+  document.addEventListener('keydown', function (e) {
+    if (e.code === 'Escape') {
+      $('.offer-info').fadeOut();
+      $orderModal.fadeOut();
+      $('.menu').removeClass('menu_opened');
+      $('body').removeClass('hidden');
+      closeInfoBlock();
+    }
+  });
+
+  function closeInfoBlock() {
+    $('.info-block').fadeOut();
+    $('.info-list_opened').removeClass('info-list_opened');
+  }
 
   window.lazyLoadInstance = new LazyLoad({
     elements_selector: '.lazy'
   });
   window.lazyLoadInstance.update();
+  var $videoCard = $('.video-card');
+
+  if ($videoCard) {
+    $videoCard.lightGallery({
+      selector: 'a',
+      thumbnail: false,
+      appendCounterTo: '.lg',
+      addClass: 'no-pages'
+    });
+  }
 })();
-'use strict';
+"use strict";
 
 (function () {
   $('.menu__link').click(function (e) {
@@ -16056,6 +16115,7 @@ return Outlayer;
     e.stopPropagation();
     var $target = $(e.currentTarget);
     var $menu = $target.closest('.menu');
+
     if ($menu.hasClass('menu_opened')) {
       $menu.removeClass('menu_opened');
       $('body').removeClass('hidden');
@@ -16065,17 +16125,17 @@ return Outlayer;
     }
   });
 })();
-'use strict';
+"use strict";
 
-;(function () {
+;
+
+(function () {
   var $slider = $('.mosaic__inner');
-
   $('.mosaic').lightGallery({
     selector: '.mosaic__row a',
     thumbnail: false,
     appendCounterTo: '.lg'
   });
-
   $slider.slick({
     dots: true,
     arrows: true,
@@ -16092,15 +16152,17 @@ return Outlayer;
     centerPadding: '15%'
   });
 })();
-'use strict';
+"use strict";
 
-;(function () {
+;
+
+(function () {
   $('.offers__item').click(function (e) {
     e.preventDefault();
     e.stopPropagation();
     var $target = $(e.currentTarget);
     var id = $target.find('.offers__button').data('id');
-    var $popup = $('.offer-info[data-id="' + id + '"]');
+    var $popup = $(".offer-info[data-id=\"".concat(id, "\"]"));
     var inner = $popup[0].querySelector('.offer-info__text');
     $('.offer-info').fadeOut();
     $popup.css('display', 'flex').hide().fadeIn();
@@ -16111,23 +16173,23 @@ return Outlayer;
     }, 1000);
     $('body').addClass('hidden');
   });
-
   $('.offer-info__back .close-btn').click(function (e) {
     var $target = $(e.currentTarget);
     var $popup = $target.closest('.offer-info');
     $popup.fadeOut();
     $('body').addClass('hidden');
   });
-
   $('.offer-info__button').click(function (e) {
     $(e.currentTarget).closest('.offer-info').fadeOut();
   });
 })();
-'use strict';
+"use strict";
 
-;(function () {
+;
+
+(function () {
   $('.open-questions').click(function (e) {
-    var $popup = $('.questions');
+    var $popup = $(".questions");
     var inner = $popup[0].querySelector('.questions__content');
     $('.menu').addClass('hidden');
     $('body').addClass('hidden');
@@ -16138,7 +16200,6 @@ return Outlayer;
       instance.update(true);
     }, 1000);
   });
-
   $('.questions__close').click(function (e) {
     var $target = $(e.currentTarget);
     var $section = $target.closest('.questions');
@@ -16147,9 +16208,138 @@ return Outlayer;
     $('body').removeClass('hidden');
   });
 })();
-'use strict';
+"use strict";
 
-;(function () {
+;
+
+(function () {
+  var $orderModal = $('.order-modal');
+  var $orderForm = $('.order-modal__inner');
+  var fieldsMap = {
+    'name': 'Имя',
+    'email': 'Почта',
+    'event_type': 'Тип мероприятия',
+    'budget': 'Бюджет',
+    'day': 'День',
+    'month': 'Месяц',
+    'year': 'Год'
+  };
+  var $formLoader = $('.order-modal__loader');
+  var $formMain = $('.order-modal__main');
+  var $formSuccess = $('.order-modal__success-message');
+  var orderForm = document.querySelector('.order-modal__inner');
+  $orderForm.on('submit', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var $form = $(e.currentTarget);
+    var data = $form.serializeArray();
+    var title = 'Раздел сайта - ' + $('title').text();
+    var text = data.map(function (item) {
+      return "".concat(fieldsMap[item.name], " - ").concat(item.value);
+    });
+    var resultText = text.join(' | \n');
+    var dataText = "".concat(title, ".| \n ").concat(resultText);
+    $formLoader.fadeIn();
+    $.ajax({
+      type: 'POST',
+      url: '/mail.php',
+      data: {
+        dataText: dataText
+      },
+      success: function success(response) {
+        $formMain.hide();
+        $formSuccess.show();
+        $formLoader.fadeOut();
+        orderForm.reset();
+      },
+      error: function error(data) {
+        orderForm.reset();
+        $formLoader.fadeOut();
+      }
+    });
+  });
+  $('.order-modal__close').click(function () {
+    $orderModal.fadeOut();
+  });
+  $('.open-order').click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $('body').css('overflow', 'visible');
+    $formMain.show();
+    $formSuccess.hide();
+    $orderModal.fadeIn();
+  });
+  var $daySelect = $('.labeled-select__select_day');
+  var $monthSelect = $('.labeled-select__select_month');
+  var $yearSelect = $('.labeled-select__select_year');
+  var now = new Date();
+  var calculatedYear = now.getFullYear();
+  var maxYear = calculatedYear + 10;
+  $yearSelect.html('');
+
+  for (var i = calculatedYear; i <= maxYear; i++) {
+    $yearSelect.append("<option>".concat(i, "</option>"));
+  }
+
+  updateDates();
+
+  function zeroPad(num, size) {
+    var s = String(num);
+
+    while (s.length < (size || 2)) {
+      s = "0" + s;
+    }
+
+    return s;
+  }
+
+  $daySelect.val(now.getDate());
+  $monthSelect.val(zeroPad(now.getMonth() + 1, 2));
+  $yearSelect.val(now.getFullYear());
+  $daySelect.change(function () {
+    updateDates();
+  });
+  $monthSelect.change(function () {
+    updateDates();
+  });
+  $yearSelect.change(function () {
+    updateDates();
+  });
+
+  function updateDates() {
+    var now = new Date();
+    var currentDate = now.getDate();
+    var currentMonth = now.getMonth() + 1;
+    var currentYear = now.getFullYear();
+    var selectedDate = Number($daySelect.val());
+    var selectedMonth = Number($monthSelect.val());
+    var selectedYear = Number($yearSelect.val());
+    var selectedParsedDate = dayjs("".concat(selectedYear, "-").concat(selectedMonth, "-").concat(selectedDate));
+    var currentParsedDate = dayjs(now);
+    var selectedEqualCurrent = selectedYear === currentYear && selectedMonth === currentMonth;
+    var maxDay = selectedParsedDate.daysInMonth();
+    var dateDay = selectedEqualCurrent ? currentParsedDate.date() : 1;
+    $daySelect.html('');
+
+    for (var _i = dateDay; _i <= maxDay; _i++) {
+      $daySelect.append("<option>".concat(_i, "</option>"));
+    }
+
+    $daySelect.val(selectedDate >= dateDay ? selectedDate : dateDay);
+    var calculatedMonth = selectedYear === currentYear ? currentMonth : 1;
+    var maxMonth = 12;
+    $monthSelect.html('');
+
+    for (var _i2 = calculatedMonth; _i2 <= maxMonth; _i2++) {
+      $monthSelect.append("<option ".concat(_i2 === selectedMonth ? 'selected' : '', ">").concat(zeroPad(_i2, 2), "</option>"));
+    }
+  }
+})();
+"use strict";
+
+;
+
+(function () {
   var slider = $('.slider__inner');
   slider.on('afterChange', function (event, currentSlide) {
     var slides = document.querySelectorAll('.slider__text');
@@ -16161,8 +16351,7 @@ return Outlayer;
       }, 1000);
     });
   });
-  slider.on('init', function (event) {
-    // console.log(event);
+  slider.on('init', function (event) {// console.log(event);
   });
   slider.slick({
     dots: true,
