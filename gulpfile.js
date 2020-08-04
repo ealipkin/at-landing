@@ -88,6 +88,7 @@ gulp.task('sass', () =>
     .src([
       'src/css/variables.scss',
       'src/css/vendor/*.scss',
+      'src/css/fonts.scss',
       'src/css/base.scss',
       'src/blocks/base/**/*.scss',
       'src/blocks/composite/**/*.scss',

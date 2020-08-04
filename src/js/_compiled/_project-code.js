@@ -227,6 +227,31 @@
 ;
 
 (function () {
+  $('.open-questions').click(function (e) {
+    var $popup = $(".questions");
+    var inner = $popup[0].querySelector('.questions__content');
+    $('.menu').addClass('hidden');
+    $('body').addClass('hidden');
+    $popup.fadeIn();
+    var instance = new OverlayScrollbars(inner, {});
+    instance.sleep();
+    setTimeout(function () {
+      instance.update(true);
+    }, 1000);
+  });
+  $('.questions__close').click(function (e) {
+    var $target = $(e.currentTarget);
+    var $section = $target.closest('.questions');
+    $('.menu').removeClass('hidden');
+    $section.fadeOut();
+    $('body').removeClass('hidden');
+  });
+})();
+"use strict";
+
+;
+
+(function () {
   var $orderModal = $('.order-modal');
   var $orderForm = $('.order-modal__inner');
   var fieldsMap = {
@@ -348,31 +373,6 @@
       $monthSelect.append("<option ".concat(_i2 === selectedMonth ? 'selected' : '', ">").concat(zeroPad(_i2, 2), "</option>"));
     }
   }
-})();
-"use strict";
-
-;
-
-(function () {
-  $('.open-questions').click(function (e) {
-    var $popup = $(".questions");
-    var inner = $popup[0].querySelector('.questions__content');
-    $('.menu').addClass('hidden');
-    $('body').addClass('hidden');
-    $popup.fadeIn();
-    var instance = new OverlayScrollbars(inner, {});
-    instance.sleep();
-    setTimeout(function () {
-      instance.update(true);
-    }, 1000);
-  });
-  $('.questions__close').click(function (e) {
-    var $target = $(e.currentTarget);
-    var $section = $target.closest('.questions');
-    $('.menu').removeClass('hidden');
-    $section.fadeOut();
-    $('body').removeClass('hidden');
-  });
 })();
 "use strict";
 
