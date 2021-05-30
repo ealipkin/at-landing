@@ -87,7 +87,7 @@
       display: block;
       position: absolute;
       right: 140px;
-      top: 0;
+      top: 5px;
     }
   }
 
@@ -184,16 +184,30 @@
     display: block !important;
   }
 
-  &__contacts {
-    position: absolute;
-    right: 30px;
-    height: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-top: 65px;
+  .call-link {
+    bottom: 25px;
+    right: 70px;
+    position: fixed;
+    transform: none;
+    left: 0;
+    top: 100px;
+    border: 1px solid white;
+    background: none;
+
+    &--whatsapp {
+      top: 40px;
+    }
+
+    margin-left: -100px;
 
     @include laptop() {
-      margin-top: 0;
+      top: 70px;
+      left: auto;
+      right: 144px;
+
+      &--whatsapp {
+        top: -4px;
+      }
     }
   }
 }
@@ -247,57 +261,6 @@
       opacity: 1;
     }
   }
-}
 
-
-.call-link {
-  bottom: 25px;
-  box-sizing: border-box;
-  width: 50px;
-  height: 50px;
-  border-radius: 15px;
-  color: white;
-  border: 1px solid currentColor;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.5s ease;
-  right: 70px;
-  position: fixed;
-  transform: none;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 40px;
-
-  svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  &:hover {
-    background: #FFED00;
-    color: black;
-    border-color: #FFED00;
-  }
-
-  margin-left: -100px;
-
-  @include tablet() {
-    //top: 20px;
-  }
-  @include laptop() {
-    background-size: 16px;
-    top: -4px;
-    left: auto;
-    right: 144px;
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-
-    &:hover {
-      background-size: 16px;
-    }
-  }
 }
 

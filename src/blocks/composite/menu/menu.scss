@@ -117,6 +117,12 @@
     @include laptop() {
       height: 30px;
     }
+
+    &--hide-tablet {
+      @include tablet {
+        display: none;
+      }
+    }
   }
 
   &__link {
@@ -126,6 +132,8 @@
     padding-left: 52px;
     transition: all 0.5s ease;
     position: relative;
+    display: flex;
+    align-items: center;
 
     &-icon {
       color: inherit;
@@ -250,4 +258,9 @@
 
 .menu.hidden {
   display: none;
+}
+
+.blank-icon {
+  width: 17px;
+  margin-left: 10px;
 }

@@ -386,5 +386,24 @@
     }
   }
 
+  &__footer {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 50px;
+
+    @include tablet {
+      display: flex;
+    }
+
+    .offers__button {
+      margin-bottom: 15px;
+      width: 32%;
+      position: static;
+      white-space: nowrap;
+
+    }
+  }
 }
 

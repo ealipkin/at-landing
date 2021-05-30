@@ -1,0 +1,29 @@
+.main-menu {
+  display: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: absolute;
+  z-index: 10;
+
+  @include laptop {
+    display: flex;
+    top: 130px;
+    left: 48px;
+  }
+
+  @media (min-width: 1500px) {
+    top: 43px;
+    right: 340px;
+    left: auto;
+  }
+
+  &__item {
+    margin-left: 35px;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: white;
+  }
+}

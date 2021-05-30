@@ -1,0 +1,12 @@
+.contacts-nav {
+    position: absolute;
+    right: 30px;
+    height: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 65px;
+
+    @include laptop() {
+      margin-top: 0;
+    }
+}

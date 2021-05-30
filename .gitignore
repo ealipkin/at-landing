@@ -11,5 +11,6 @@ src/js/_compiled/
 src/pug/_mixins.pug
 src/_images/
 src/images/mosaic/
+src/video
 src/images/reviews
 !/src/js/_compiled/

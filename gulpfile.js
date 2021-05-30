@@ -269,7 +269,7 @@ gulp.task('page', gulp.series(setPageName, 'pug', 'js', 'css', 'watch'));
 //create block (use - gulp create --name=%NAME% --type=b --tech=%tech%)
 gulp.task('create', (done) => {
   const name = argv.name && argv.name.split(',')[0];
-  const tech = argv.tech ? argv.tech.split(',') : ['pug', 'scss', 'js'];
+  const tech = argv.tech ? argv.tech.split(',') : ['pug', 'scss'];
   const blockTypeFolder = argv.type === 'b' ? 'base' : 'composite';
 
   // создаваемый блок обязан иметь имя

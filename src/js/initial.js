@@ -1,51 +1,118 @@
+const videoContainer = document.querySelector('.background-video');
+const bgVideo = videoContainer && videoContainer.querySelector('video');
+
+const mainMenu = document.querySelector('.main-menu');
+const menu = document.querySelector('.menu');
+const contactsLinks = document.querySelector('.contacts-links');
+const promoVideo = document.querySelector('.promo-video');
+
+const getVideoAspectRatio = () => {
+  return window.innerWidth < 768 ? (3 / 4) : (16 / 9);
+}
+const VIDEO_GAP = 550;
+const updateVideoSize = (video) => {
+  let newWidth;
+  let newHeight;
+  const $el = $(video);
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  if (windowWidth > 1500) {
+    newWidth = '100%';
+    newHeight = 'auto';
+  } else {
+    newWidth = windowHeight > (windowWidth - VIDEO_GAP) ? 'auto' : '100%';
+    newHeight = windowHeight > (windowWidth - VIDEO_GAP) ? '100%' : 'auto';
+  }
+  $el
+    .width(newWidth)
+    .height(newHeight);
+}
+
+const handleBackgroundVideo = () => {
+  if (bgVideo) {
+    updateVideoSize(bgVideo);
+  }
+}
+
+
+const toggleIsBlack = (isBlack) => {
+  if (!isBlack) {
+    menu.classList.add('menu_black');
+    contactsLinks.classList.add('contacts-links_black');
+    promoVideo.classList.add('promo-video_black');
+  } else {
+    menu.classList.remove('menu_black');
+    contactsLinks.classList.remove('contacts-links_black');
+    promoVideo.classList.remove('promo-video_black');
+  }
+}
+
+const getAnchors = () => {
+  return ['main', 'meet', 'provide', 'media', 'programs', 'reviews', 'contacts'];
+}
+
+const initFullPage = () => {
+  $('.page-container')
+    .fullpage({
+      //options here
+      licenseKey: '3B638E30-7BAE4068-BFE661C6-783CCD7A',
+      anchors: getAnchors(),
+      autoScrolling: true,
+      scrollHorizontally: true,
+      loopBottom: true,
+      normalScrollElements: '.scrollable-content',
+      responsiveWidth: 1024,
+      responsiveHeight: 550,
+      onLeave: function (origin, destination, direction) {
+        const item = destination.item;
+        const isBlack = item.classList.contains('section-black');
+        toggleIsBlack(isBlack);
+        $('.offer-info').fadeOut();
+        $('body').removeClass('hidden');
+
+        window.lazyLoadInstance.update();
+        const isDestinationVisible = $(destination.item).is(':visible');
+        if (!isDestinationVisible) {
+          if (direction === 'down') {
+            setTimeout(() => {
+              $('[href="#media"]')[0].click();
+            }, 10);
+          } else {
+            setTimeout(() => {
+              $('[href="#meet"]')[0].click();
+            }, 10);
+          }
+        }
+        $(mainMenu).addClass('_hidden');
+      },
+      afterLoad: function (origin, destination, direction) {
+        const item = destination.item;
+        const isBlack = item.classList.contains('section-black');
+        const anchor = item.dataset.anchor;
+
+        if (destination.isFirst) {
+          $(mainMenu).removeClass('_hidden');
+        }
+        $('.questions').fadeOut();
+        $('.offer-info').fadeOut();
+        $('body').removeClass('hidden');
+        $('.menu').removeClass('hidden');
+        $('.menu__link_active').removeClass('menu__link_active');
+        $(`.menu__link[href="#${anchor}"]`).addClass('menu__link_active');
+        toggleIsBlack(isBlack);
+
+        window.lazyLoadInstance.update();
+      },
+    });
+}
+
 (function () {
   $(document).ready(function () {
+    initFullPage();
 
-    $('.page-container')
-      .fullpage({
-        //options here
-        licenseKey: '3B638E30-7BAE4068-BFE661C6-783CCD7A',
-        anchors: ['main', 'meet', 'provide', 'media', 'programs', 'reviews', 'contacts'],
-        autoScrolling: true,
-        scrollHorizontally: true,
-        loopBottom: true,
-        normalScrollElements: '.scrollable-content',
-        responsiveWidth: 1024,
-        responsiveHeight: 550,
-        onLeave: function (origin, destination, direction) {
-          const item = destination.item;
-          const isBlack = item.classList.contains('section-black');
-          const menu = document.querySelector('.menu');
-          $('.offer-info').fadeOut();
-          $('body').removeClass('hidden');
-          if (!isBlack) {
-            menu.classList.add('menu_black');
-          } else {
-            menu.classList.remove('menu_black');
-          }
-
-          window.lazyLoadInstance.update();
-        },
-        afterLoad: function (origin, destination, direction) {
-          const item = destination.item;
-          const isBlack = item.classList.contains('section-black');
-          const menu = document.querySelector('.menu');
-          const anchor = item.dataset.anchor;
-          $('.questions').fadeOut();
-          $('.offer-info').fadeOut();
-          $('body').removeClass('hidden');
-          $('.menu').removeClass('hidden');
-          $('.menu__link_active').removeClass('menu__link_active');
-          $(`.menu__link[href="#${anchor}"]`).addClass('menu__link_active');
-          if (!isBlack) {
-            menu.classList.add('menu_black');
-          } else {
-            menu.classList.remove('menu_black');
-          }
-
-          window.lazyLoadInstance.update();
-        },
-      });
+    window.addEventListener('resize', () => {
+      updateVideoSize(bgVideo);
+    });
   });
 
   $('.move-to-link').click((e) => {
@@ -141,4 +208,14 @@
       addClass: 'no-pages',
     });
   }
+
+
+  $('.promo-video').lightGallery({
+    selector: '.promo-video__button',
+    thumbnail: false,
+    counter: false,
+    appendCounterTo: '.lg',
+  });
+
+  // handleBackgroundVideo();
 })();

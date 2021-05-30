@@ -1,9 +1,5 @@
 ;(function () {
-  $('.offers__item').click((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const $target = $(e.currentTarget);
-    const id = $target.find('.offers__button').data('id');
+  const openOfferPopup = (id) => {
     const $popup = $(`.offer-info[data-id="${id}"]`);
     const inner = $popup[0].querySelector('.offer-info__text');
     $('.offer-info').fadeOut();
@@ -17,6 +13,25 @@
       instance.update(true);
     }, 1000);
     $('body').addClass('hidden');
+  };
+
+  $('.offers__button').click((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const target = e.currentTarget;
+    const isInsideOffers = target.closest('.offers__item');
+    if (!isInsideOffers) {
+      const id = target.dataset.id;
+      openOfferPopup(id);
+    }
+  });
+
+  $('.offers__item').click((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const $target = $(e.currentTarget);
+    const id = $target.find('.offers__button').data('id');
+    openOfferPopup(id);
   });
 
   $('.offer-info__back .close-btn').click((e) => {

@@ -1,0 +1,41 @@
+.background-video {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  @include tablet {
+    display: block;
+  }
+
+  &:after {
+    content: '';
+    background: black;
+    opacity: 0.6;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-color: black; /* in case the video doesn't fit the whole page*/
+    background-image: url(../images/main-bg.jpg); /* our video */
+    background-position: center center;
+    background-size: contain;
+    object-fit: cover; /*cover video background */
+    z-index: 0;
+  }
+}

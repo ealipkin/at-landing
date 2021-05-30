@@ -1,0 +1,51 @@
+.contacts-links {
+  position: fixed;
+
+  right: 70px;
+  top: 25px;
+
+  z-index: 9;
+  flex-wrap: nowrap;
+
+  display: none;
+
+  @include tablet {
+    display: flex;
+  }
+  @include laptop {
+    right: 150px;
+    top: 45px;
+
+  }
+
+  .call-link {
+    margin-right: 15px;
+
+  }
+
+  .call-link:not(:hover) {
+    box-shadow: 0 0 4px 0 rgba(50, 50, 50, 0.25);
+    border-color: white;
+    color: white;
+  }
+}
+
+
+.contacts-links_black {
+  .call-link:not(:hover) {
+    border-color: black !important;
+  }
+
+  svg {
+    color: black;
+  }
+
+  .call-link--whatsapp:hover svg {
+    color: white;
+  }
+
+}
+
+.lg-on .contacts-links {
+  z-index: 9999;
+}

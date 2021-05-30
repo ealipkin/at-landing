@@ -46,13 +46,17 @@
     $orderModal.fadeOut();
   });
 
-  $('.open-order').click((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    $('body').css('overflow', 'visible');
-    $formMain.show();
-    $formSuccess.hide();
-    $orderModal.fadeIn();
+  $('body').click((e) => {
+    const currentTarget = e.target;
+    if (currentTarget.classList.contains('open-order')) {
+      $('.lg-close').click();
+      e.preventDefault();
+      e.stopPropagation();
+      $('body').css('overflow', 'visible');
+      $formMain.show();
+      $formSuccess.hide();
+      $orderModal.fadeIn();
+    }
   });
 
   const $daySelect = $('.labeled-select__select_day');
