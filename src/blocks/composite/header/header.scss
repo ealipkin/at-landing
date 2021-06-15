@@ -36,6 +36,11 @@
       top: 50%;
       transform: translateY(-50%);
       background: white;
+      display: none;
+
+      @include tablet {
+        display: block;
+      }
     }
 
     img {

@@ -2,7 +2,7 @@
   position: fixed;
   right: 35px;
   top: 35px;
-  z-index: 10;
+  z-index: 30;
 
   @include laptop() {
     right: 80px;
@@ -41,6 +41,7 @@
     height: 18px;
     position: relative;
     cursor: pointer;
+    font-family: inherit;
 
     background: none;
     border: none;
@@ -250,9 +251,27 @@
       display: flex;
     }
   }
+
+  &__caption {
+    top: 100%;
+    position: absolute;
+    transform: rotate(90deg);
+    color: white;
+    margin-top: 40px;
+    margin-left: -16px;
+    font-size: 14px;
+
+    &:hover {
+      color: #FFED00;
+    }
+  }
 }
 
 .menu_black .menu__toggle {
+  color: black;
+}
+
+.menu_black .menu__caption {
   color: black;
 }
 

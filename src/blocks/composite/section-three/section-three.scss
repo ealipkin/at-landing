@@ -1,10 +1,6 @@
 .section_three {
   position: relative;
 
-  @include tablet {
-    display: none !important;
-  }
-
   &:after {
     content: '';
     display: none;
@@ -21,6 +17,12 @@
     @include laptop() {
       display: block;
     }
+  }
+}
+
+.section_three--hide {
+  @include tablet {
+    display: none !important;
   }
 }
 

@@ -19,11 +19,11 @@
     e.preventDefault();
     e.stopPropagation();
     const target = e.currentTarget;
-    const isInsideOffers = target.closest('.offers__item');
-    if (!isInsideOffers) {
+    // const isInsideOffers = target.closest('.offers__item');
+    // if (!isInsideOffers) {
       const id = target.dataset.id;
       openOfferPopup(id);
-    }
+    // }
   });
 
   $('.offers__item').click((e) => {

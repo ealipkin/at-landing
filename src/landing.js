@@ -16001,12 +16001,24 @@ var handleBackgroundVideo = function handleBackgroundVideo() {
 var toggleIsBlack = function toggleIsBlack(isBlack) {
   if (!isBlack) {
     menu.classList.add('menu_black');
-    contactsLinks.classList.add('contacts-links_black');
-    promoVideo.classList.add('promo-video_black');
+
+    if (contactsLinks) {
+      contactsLinks.classList.add('contacts-links_black');
+    }
+
+    if (promoVideo) {
+      promoVideo.classList.add('promo-video_black');
+    }
   } else {
     menu.classList.remove('menu_black');
-    contactsLinks.classList.remove('contacts-links_black');
-    promoVideo.classList.remove('promo-video_black');
+
+    if (contactsLinks) {
+      contactsLinks.classList.remove('contacts-links_black');
+    }
+
+    if (promoVideo) {
+      promoVideo.classList.remove('promo-video_black');
+    }
   }
 };
 
@@ -16030,7 +16042,7 @@ var initFullPage = function initFullPage() {
       var isBlack = item.classList.contains('section-black');
       toggleIsBlack(isBlack);
       $('.offer-info').fadeOut();
-      $('body').removeClass('hidden');
+      closeMenu();
       window.lazyLoadInstance.update();
       var isDestinationVisible = $(destination.item).is(':visible');
 
@@ -16067,6 +16079,11 @@ var initFullPage = function initFullPage() {
       window.lazyLoadInstance.update();
     }
   });
+};
+
+var closeMenu = function closeMenu() {
+  $('.menu').removeClass('menu_opened');
+  $('body').removeClass('hidden');
 };
 
 (function () {
@@ -16121,8 +16138,7 @@ var initFullPage = function initFullPage() {
     var isInsideMenu = target.closest('.menu');
 
     if (!isMenu && !isInsideMenu) {
-      $('.menu').removeClass('menu_opened');
-      $('body').removeClass('hidden');
+      closeMenu();
     }
 
     var isInfoBlock = target.classList.contains('info-block');
@@ -16137,8 +16153,7 @@ var initFullPage = function initFullPage() {
     if (e.code === 'Escape') {
       $('.offer-info').fadeOut();
       $orderModal.fadeOut();
-      $('.menu').removeClass('menu_opened');
-      $('body').removeClass('hidden');
+      closeMenu();
       closeInfoBlock();
     }
   });
@@ -16246,13 +16261,11 @@ var initFullPage = function initFullPage() {
   $('.offers__button').click(function (e) {
     e.preventDefault();
     e.stopPropagation();
-    var target = e.currentTarget;
-    var isInsideOffers = target.closest('.offers__item');
+    var target = e.currentTarget; // const isInsideOffers = target.closest('.offers__item');
+    // if (!isInsideOffers) {
 
-    if (!isInsideOffers) {
-      var id = target.dataset.id;
-      openOfferPopup(id);
-    }
+    var id = target.dataset.id;
+    openOfferPopup(id); // }
   });
   $('.offers__item').click(function (e) {
     e.preventDefault();

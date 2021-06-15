@@ -38,12 +38,20 @@ const handleBackgroundVideo = () => {
 const toggleIsBlack = (isBlack) => {
   if (!isBlack) {
     menu.classList.add('menu_black');
-    contactsLinks.classList.add('contacts-links_black');
-    promoVideo.classList.add('promo-video_black');
+    if (contactsLinks) {
+      contactsLinks.classList.add('contacts-links_black');
+    }
+    if (promoVideo) {
+      promoVideo.classList.add('promo-video_black');
+    }
   } else {
     menu.classList.remove('menu_black');
-    contactsLinks.classList.remove('contacts-links_black');
-    promoVideo.classList.remove('promo-video_black');
+    if (contactsLinks) {
+      contactsLinks.classList.remove('contacts-links_black');
+    }
+    if (promoVideo) {
+      promoVideo.classList.remove('promo-video_black');
+    }
   }
 }
 
@@ -68,7 +76,7 @@ const initFullPage = () => {
         const isBlack = item.classList.contains('section-black');
         toggleIsBlack(isBlack);
         $('.offer-info').fadeOut();
-        $('body').removeClass('hidden');
+        closeMenu();
 
         window.lazyLoadInstance.update();
         const isDestinationVisible = $(destination.item).is(':visible');
@@ -104,6 +112,11 @@ const initFullPage = () => {
         window.lazyLoadInstance.update();
       },
     });
+}
+
+const closeMenu = () => {
+  $('.menu').removeClass('menu_opened');
+  $('body').removeClass('hidden');
 }
 
 (function () {
@@ -164,8 +177,7 @@ const initFullPage = () => {
     const isInsideMenu = target.closest('.menu');
 
     if (!isMenu && !isInsideMenu) {
-      $('.menu').removeClass('menu_opened');
-      $('body').removeClass('hidden');
+      closeMenu();
     }
 
     const isInfoBlock = target.classList.contains('info-block');
@@ -182,8 +194,7 @@ const initFullPage = () => {
     if (e.code === 'Escape') {
       $('.offer-info').fadeOut();
       $orderModal.fadeOut();
-      $('.menu').removeClass('menu_opened');
-      $('body').removeClass('hidden');
+      closeMenu();
       closeInfoBlock();
     }
   });

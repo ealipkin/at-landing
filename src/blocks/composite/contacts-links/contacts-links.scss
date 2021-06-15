@@ -1,17 +1,18 @@
 .contacts-links {
   position: fixed;
+  display: flex;
 
   right: 70px;
-  top: 25px;
+  top: 30px;
 
   z-index: 9;
   flex-wrap: nowrap;
 
-  display: none;
-
   @include tablet {
-    display: flex;
+    right: 70px;
+    top: 25px;
   }
+
   @include laptop {
     right: 150px;
     top: 45px;
@@ -28,10 +29,24 @@
     border-color: white;
     color: white;
   }
+
+  &__phone {
+    position: absolute;
+    top: 100%;
+    color: white;
+    margin-top: 15px;
+    left: 50%;
+    margin-left: -7px;
+    transform: translateX(-50%);
+  }
 }
 
 
 .contacts-links_black {
+  .contacts-links__phone {
+    color: black;
+  }
+
   .call-link:not(:hover) {
     border-color: black !important;
   }

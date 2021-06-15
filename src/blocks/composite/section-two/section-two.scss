@@ -353,8 +353,13 @@
     font-size: 12px;
     line-height: 1.5em;
 
+    padding-left: 15px;
+    margin-top: -15px;
+    min-width: 80px;
+
     @include laptop() {
       position: relative;
+      margin-top: 0;
       line-height: 1.7em;
       padding-left: 21px;
       padding-top: 31px;
@@ -376,8 +381,11 @@
   &__item {
     margin-bottom: 30px;
     width: 100%;
+    display: flex;
+    align-items: center;
+
     @include laptop() {
-      display: flex;
+      align-items: flex-start;
       margin-bottom: 50px;
     }
 
