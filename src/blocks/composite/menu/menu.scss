@@ -3,7 +3,9 @@
   right: 35px;
   top: 35px;
   z-index: 30;
-
+  @include tablet() {
+    top: 30px;
+  }
   @include laptop() {
     right: 80px;
     top: 55px;
@@ -263,6 +265,14 @@
 
     &:hover {
       color: #FFED00;
+    }
+
+    @include tablet {
+      display: none;
+    }
+
+    @include laptop {
+      display: block;
     }
   }
 }

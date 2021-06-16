@@ -92,6 +92,7 @@ const initFullPage = () => {
           }
         }
         $(mainMenu).addClass('_hidden');
+        promoVideo.classList.add('_hidden');
       },
       afterLoad: function (origin, destination, direction) {
         const item = destination.item;
@@ -99,7 +100,14 @@ const initFullPage = () => {
         const anchor = item.dataset.anchor;
 
         if (destination.isFirst) {
+          if (promoVideo) {
+            promoVideo.classList.remove('_hidden');
+          }
           $(mainMenu).removeClass('_hidden');
+        } else {
+          if (promoVideo) {
+            promoVideo.classList.add('_hidden');
+          }
         }
         $('.questions').fadeOut();
         $('.offer-info').fadeOut();

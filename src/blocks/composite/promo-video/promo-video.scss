@@ -1,5 +1,5 @@
 .promo-video {
-  bottom: auto;
+  bottom: 50px;
   margin-top: 50px;
   right: 50%;
   transform: translateX(50%);
@@ -9,11 +9,14 @@
   z-index: 8;
 
   @include tablet {
-    top: 90%;
     right: 100px;
+    bottom: 20px;
     display: block;
     margin-top: 0;
     transform: none;
+  }
+  @include laptop {
+    bottom: 30px;
   }
 
   .play-btn {

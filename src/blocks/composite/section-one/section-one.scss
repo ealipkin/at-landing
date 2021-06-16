@@ -169,8 +169,10 @@
     transform: translateY(30px);
 
     @include tablet() {
-      transform: none;
+      top: 65px;
+      right: 33px;
     }
+
     @include laptop() {
       max-height: 90vh;
       top: 50%;
