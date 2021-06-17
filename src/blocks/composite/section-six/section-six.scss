@@ -1,6 +1,6 @@
 .section_six {
   position: relative;
-
+  overflow: hidden;
   &:after {
     content: '';
     display: none;

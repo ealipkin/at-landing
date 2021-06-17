@@ -16227,6 +16227,33 @@ var closeMenu = function closeMenu() {
 ;
 
 (function () {
+  var $slider = $('.mosaic__inner');
+  $('.mosaic').lightGallery({
+    selector: '.mosaic__row a',
+    thumbnail: false,
+    appendCounterTo: '.lg'
+  });
+  $slider.slick({
+    dots: true,
+    arrows: true,
+    // fade: true,
+    speed: 1000,
+    lazyLoad: 'ondemand',
+    infinite: true,
+    edgeFriction: '2',
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    centerMode: true,
+    appendArrows: '.mosaic__controls',
+    appendDots: '.mosaic__controls',
+    centerPadding: '15%'
+  });
+})();
+"use strict";
+
+;
+
+(function () {
   var openOfferPopup = function openOfferPopup(id) {
     var $popup = $(".offer-info[data-id=\"".concat(id, "\"]"));
     var inner = $popup[0].querySelector('.offer-info__text');
@@ -16264,33 +16291,6 @@ var closeMenu = function closeMenu() {
   });
   $('.offer-info__button').click(function (e) {
     $(e.currentTarget).closest('.offer-info').fadeOut();
-  });
-})();
-"use strict";
-
-;
-
-(function () {
-  var $slider = $('.mosaic__inner');
-  $('.mosaic').lightGallery({
-    selector: '.mosaic__row a',
-    thumbnail: false,
-    appendCounterTo: '.lg'
-  });
-  $slider.slick({
-    dots: true,
-    arrows: true,
-    // fade: true,
-    speed: 1000,
-    lazyLoad: 'ondemand',
-    infinite: true,
-    edgeFriction: '2',
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    centerMode: true,
-    appendArrows: '.mosaic__controls',
-    appendDots: '.mosaic__controls',
-    centerPadding: '15%'
   });
 })();
 "use strict";

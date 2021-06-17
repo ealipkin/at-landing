@@ -68,6 +68,12 @@
 
     @include laptop() {
       display: flex;
+
+      right: 10px;
+    }
+
+    @include desktop {
+      right: 30px;
     }
   }
 
