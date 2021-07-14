@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 35px 20px;
+  padding: 10px 20px 20px;
   position: absolute;
   left: 0;
   top: 15px;
@@ -11,20 +11,36 @@
   @include laptop() {
     width: calc(100% - 70px);
     top: 25px;
-    left: 80px;
+    left: 30px;
     padding-left: 0;
+  }
+
+  @include desktop {
+    //left: 80px;
+    box-sizing: border-box;
+    width: calc(100% - 100px);
   }
 
   &__logo {
     color: white;
     text-decoration: none;
     font-size: 12px;
-    display: flex;
     align-items: center;
     padding-right: 31px;
     position: relative;
+
+    display: none;
+
+    @include tablet {
+      display: flex;
+    }
+
     @include laptop() {
       font-size: 18px;
+    }
+
+    @include desktop {
+      display: none;
     }
 
     &:after {

@@ -1,6 +1,10 @@
 .section-four {
   color: white;
 
+  @include tablet {
+    margin-top: 0;
+  }
+
   &__header {
     display: flex;
     align-items: center;
@@ -22,15 +26,38 @@
   .section-header__text {
     @include laptop() {
       padding-left: 88px;
+      padding-top: 0;
+      margin-top: -10px;
       width: 250px;
-      padding-top: 17px;
     }
   }
 }
 
 .section-four__next-link {
   display: none;
-  @include laptop() {
+  @include tablet() {
     display: flex;
+  }
+}
+
+
+.section_media {
+  position: relative;
+  z-index: 1;
+
+  @include tablet {
+    @include disable-slides {
+      padding-bottom: 90px;
+    }
+    margin-bottom: 0;
+    //margin-bottom: -190px;
+  }
+
+  @include laptop {
+    margin-bottom: 0;
+    @include disable-slides {
+      padding-top: 80px;
+      padding-bottom: 10px;
+    }
   }
 }

@@ -9,26 +9,35 @@ var promoVideo = document.querySelector('.promo-video');
 
 var getVideoAspectRatio = function getVideoAspectRatio() {
   return window.innerWidth < 768 ? 3 / 4 : 16 / 9;
-};
+}; // 1280 x 720
+// 2280 x 1050
+// 1000 x 330
+
 
 var VIDEO_GAP = 550;
+var vid_w_orig = 1280;
+var vid_h_orig = 720;
+var min_w = 300;
 
 var updateVideoSize = function updateVideoSize(video) {
-  var newWidth;
-  var newHeight;
-  var $el = $(video);
-  var windowWidth = window.innerWidth;
-  var windowHeight = window.innerHeight;
+  var $section = $('.section-main');
+  var $videoContainer = $('.background-video');
+  var $video = $('video');
+  $videoContainer.width($section.width());
+  $videoContainer.height($section.height());
+  var scale_h = $section.width() / vid_w_orig;
+  var scale_v = $section.height() / vid_h_orig;
+  var scale = scale_h > scale_v ? scale_h : scale_v;
 
-  if (windowWidth > 1500) {
-    newWidth = '100%';
-    newHeight = 'auto';
-  } else {
-    newWidth = windowHeight > windowWidth - VIDEO_GAP ? 'auto' : '100%';
-    newHeight = windowHeight > windowWidth - VIDEO_GAP ? '100%' : 'auto';
+  if (scale * vid_w_orig < min_w) {
+    scale = min_w / vid_w_orig;
   }
 
-  $el.width(newWidth).height(newHeight);
+  ;
+  $video.width(scale * vid_w_orig);
+  $video.height(scale * vid_h_orig);
+  $videoContainer.scrollLeft(($video.width() - $section.width()) / 2);
+  $videoContainer.scrollTop(($video.height() - $section.height()) / 2);
 };
 
 var handleBackgroundVideo = function handleBackgroundVideo() {
@@ -75,7 +84,8 @@ var initFullPage = function initFullPage() {
     loopBottom: true,
     normalScrollElements: '.scrollable-content',
     responsiveWidth: 1024,
-    responsiveHeight: 550,
+    responsiveHeight: 800,
+    fitToSection: false,
     onLeave: function onLeave(origin, destination, direction) {
       var item = destination.item;
       var isBlack = item.classList.contains('section-black');
@@ -138,7 +148,9 @@ var closeMenu = function closeMenu() {
   $(document).ready(function () {
     initFullPage();
     window.addEventListener('resize', function () {
-      updateVideoSize(bgVideo);
+      setTimeout(function () {
+        updateVideoSize(bgVideo);
+      }, 100);
     });
   });
   $('.move-to-link').click(function (e) {

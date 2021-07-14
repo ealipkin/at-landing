@@ -1,7 +1,7 @@
 .menu {
   position: fixed;
-  right: 35px;
-  top: 35px;
+  right: 20px;
+  top: 28px;
   z-index: 30;
   @include tablet() {
     top: 30px;
@@ -260,7 +260,7 @@
     transform: rotate(90deg);
     color: white;
     margin-top: 40px;
-    margin-left: -16px;
+    margin-left: -11px;
     font-size: 14px;
 
     &:hover {

@@ -9,27 +9,40 @@ const promoVideo = document.querySelector('.promo-video');
 const getVideoAspectRatio = () => {
   return window.innerWidth < 768 ? (3 / 4) : (16 / 9);
 }
+
+// 1280 x 720
+// 2280 x 1050
+// 1000 x 330
 const VIDEO_GAP = 550;
+
+const vid_w_orig = 1280;
+const vid_h_orig = 720;
+const min_w = 300;
 const updateVideoSize = (video) => {
-  let newWidth;
-  let newHeight;
-  const $el = $(video);
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight;
-  if (windowWidth > 1500) {
-    newWidth = '100%';
-    newHeight = 'auto';
-  } else {
-    newWidth = windowHeight > (windowWidth - VIDEO_GAP) ? 'auto' : '100%';
-    newHeight = windowHeight > (windowWidth - VIDEO_GAP) ? '100%' : 'auto';
-  }
-  $el
-    .width(newWidth)
-    .height(newHeight);
+  const $section = $('.section-main');
+
+  const $videoContainer = $('.background-video');
+  const $video = $('video');
+
+  $videoContainer.width($section.width());
+  $videoContainer.height($section.height());
+
+  var scale_h = $section.width() / vid_w_orig;
+  var scale_v = $section.height() / vid_h_orig;
+  var scale = scale_h > scale_v ? scale_h : scale_v;
+
+  if (scale * vid_w_orig < min_w) {scale = min_w / vid_w_orig;};
+
+  $video.width(scale * vid_w_orig);
+  $video.height(scale * vid_h_orig);
+
+  $videoContainer.scrollLeft(($video.width() - $section.width()) / 2);
+  $videoContainer.scrollTop(($video.height() - $section.height()) / 2);
 }
 
 const handleBackgroundVideo = () => {
   if (bgVideo) {
+
     updateVideoSize(bgVideo);
   }
 }
@@ -70,7 +83,8 @@ const initFullPage = () => {
       loopBottom: true,
       normalScrollElements: '.scrollable-content',
       responsiveWidth: 1024,
-      responsiveHeight: 550,
+      responsiveHeight: 800,
+      fitToSection: false,
       onLeave: function (origin, destination, direction) {
         const item = destination.item;
         const isBlack = item.classList.contains('section-black');
@@ -132,7 +146,9 @@ const closeMenu = () => {
     initFullPage();
 
     window.addEventListener('resize', () => {
-      updateVideoSize(bgVideo);
+      setTimeout(() => {
+        updateVideoSize(bgVideo);
+      }, 100)
     });
   });
 

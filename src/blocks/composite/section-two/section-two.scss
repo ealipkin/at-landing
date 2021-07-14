@@ -1,4 +1,29 @@
 .section_two {
+  @media (max-width: 1024px) {
+    //margin-top: -150px;
+    //margin-bottom: -100px;
+    padding-bottom: 40px;
+  }
+
+  @include laptop {
+    margin: 0;
+    @include disable-slides {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    @include disable-slides {
+      padding-bottom: 80px;
+    }
+  }
+
+  @include desktop {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
   &:after {
     content: '';
     display: none;
@@ -13,7 +38,7 @@
     position: absolute;
     background-size: cover;
     opacity: 0.5;
-    @include laptop() {
+    @include desktop() {
       display: block;
     }
   }
@@ -66,10 +91,10 @@
       margin-top: 7px;
     }
 
-    @include laptop() {
+    @include desktop() {
       display: flex;
 
-      right: 10px;
+      right: -30px;
     }
 
     @include desktop {
@@ -147,28 +172,47 @@
 .info-list {
   position: relative;
   z-index: 10;
-  padding: 43px 40px 60px;
+  padding: 23px 20px 40px;
   background: white;
-  margin-left: 45px;
-  margin-right: 45px;
-  margin-top: 50px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 40px;
   box-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.25);
 
   &_opened {
     z-index: 15;
   }
 
+  .offers__button {
+    background: transparent;
+    border-color: black;
+
+    &:hover {
+      border: 1px solid #FFED00;
+      background: #FFED00;
+      color: black;
+    }
+  }
+
+  @include tablet {
+    padding: 43px 40px 60px;
+    margin-left: 45px;
+    margin-right: 45px;
+    margin-top: 50px;
+  }
+
   @include laptop() {
     position: relative;
     //width: 880px;
-    max-width: 75%;
-    margin-left: 120px;
-    padding: 54px 40px 60px;
+    padding: 25px 40px 60px;
     min-height: 496px;
     box-sizing: border-box;
     left: auto;
-    margin-top: 70px;
     transform: none !important;
+    margin-top: 80px;
+
+    max-width: 85%;
+    margin-left: 90px;
     &:after, &:before {
       display: none;
     }
@@ -186,8 +230,14 @@
   }
 
   @include desktop() {
+    margin-top: 50px;
     max-width: 70%;
     padding: 74px 70px 60px;
+  }
+
+  @include vertical {
+    margin-top: 30px;
+    padding: 20px;
   }
 
   &--type-2 {
@@ -284,7 +334,7 @@
   }
 
   &__number {
-    font-size: 50px;
+    font-size: 40px;
     padding-bottom: 20px;
     position: relative;
 
@@ -299,6 +349,9 @@
       display: block;
     }
 
+    @include tablet {
+      font-size: 50px;
+    }
     @include laptop() {
       font-size: 60px;
       padding-bottom: 0;
@@ -371,6 +424,8 @@
       padding-top: 31px;
       font-size: 16px;
       padding-right: 10px;
+      min-height: 85px;
+      box-sizing: border-box;
       //max-width: 200px;
       &:before {
         content: '';
@@ -385,18 +440,26 @@
   }
 
   &__item {
-    margin-bottom: 30px;
     width: 100%;
     display: flex;
     align-items: center;
+    margin-bottom: 30px;
 
     @include laptop() {
       align-items: flex-start;
+      margin-bottom: 30px;
+    }
+
+    @include desktop {
       margin-bottom: 50px;
     }
 
     &:last-child {
       margin-bottom: 0;
+    }
+
+    @include vertical {
+      margin-bottom: 15px;
     }
   }
 
@@ -410,6 +473,11 @@
     @include tablet {
       display: flex;
     }
+
+    @include vertical {
+      margin-top: 20px;
+    }
+
 
     .offers__button {
       margin-bottom: 15px;

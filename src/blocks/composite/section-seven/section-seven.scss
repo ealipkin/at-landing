@@ -88,6 +88,9 @@
       margin-top: -61px;
       left: auto;
       right: 0;
+      @include vertical {
+        margin-top: -35px;
+      }
 
       img {
         width: 100%;
@@ -101,6 +104,7 @@
     &__image {
       margin-top: -100px;
       width: 50%;
+      display: none;
     }
     &__title {
       font-size: 32px;
@@ -143,7 +147,11 @@
       margin-right: 22px;
     }
   }
-
+  @media (min-width: 1100px) {
+    &__image {
+      display: block;
+    }
+  }
   @include desktop() {
     &__text {
       margin-bottom: 60px;
@@ -151,6 +159,7 @@
 
     &__image {
       margin-top: -110px;
+      display: block;
     }
   }
 
@@ -187,6 +196,13 @@
     border-color: black;
   }
 
+  &__main-section {
+    @include vertical {
+      margin-top: -15px;
+      padding-bottom: 10px;
+    }
+  }
+
   &__phone-title {
     font-size: 12px;
     color: #8c8c8c;
@@ -201,6 +217,11 @@
     display: block;
     padding-bottom: 40px;
     position: relative;
+
+    @include vertical {
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
 
     &:after {
       content: '';
@@ -226,6 +247,9 @@
     font-size: 14px;
     color: black;
     display: block;
+    @include vertical {
+      margin-bottom: 10px;
+    }
   }
 
   &__socials {
@@ -300,5 +324,10 @@
 
   @include desktop() {
     padding: 63px 35px 20px 71px;
+  }
+
+  .open-order + p {
+    margin: 0;
+    display: inline-block;
   }
 }

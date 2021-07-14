@@ -1,6 +1,21 @@
 .section_six {
   position: relative;
   overflow: hidden;
+
+  @include tablet {
+    //margin-top: -140px;
+    @include disable-slides {
+      padding-bottom: 48px;
+    }
+  }
+
+  @include laptop {
+    @include disable-slides {
+      padding-top: 110px;
+    }
+    margin-top: 0;
+  }
+
   &:after {
     content: '';
     display: none;
@@ -16,6 +31,10 @@
     @include laptop() {
       display: block;
     }
+  }
+
+  .action__title {
+    white-space: nowrap;
   }
 }
 
@@ -142,7 +161,7 @@
 }
 
 
-@media (max-width: $laptop-width) {
+@media (max-width: $tablet-width) {
   .section-six__next-link {
     display: none;
   }

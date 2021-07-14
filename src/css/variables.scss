@@ -1,12 +1,22 @@
 //mediaqueries
-$desktop: "(min-width: 1296px)";
+$desktop: "(min-width: 1280px)";
 $laptop: "(min-width: 1024px)";
 $tablet: "(min-width: 768px)";
 
-$desktop-width: "1296px";
+$desktop-width: "1280px";
 $laptop-width: "1024px";
 $tablet-width: "768px";
 
+@mixin vertical {
+  @media (max-height: 400px) {
+    @content;
+  }
+}
+@mixin disable-slides {
+  @media (max-height: 800px) {
+    @content;
+  }
+}
 @mixin tablet {
   @media #{$tablet} {
     @content;

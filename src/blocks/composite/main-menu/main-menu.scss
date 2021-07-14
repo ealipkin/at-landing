@@ -8,8 +8,13 @@
 
   @include laptop {
     display: flex;
-    top: 130px;
-    left: 48px;
+    top: 109px;
+    left: -2px;
+  }
+
+  @include desktop {
+    //left: 48px;
+    top: 50px;
   }
 
   @media (min-width: 1500px) {

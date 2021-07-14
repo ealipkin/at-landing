@@ -39,6 +39,15 @@
     left: 50%;
     margin-left: -7px;
     transform: translateX(-50%);
+    display: none;
+
+    @include desktop {
+      display: block;
+    }
+
+    @include vertical {
+      display: none !important;
+    }
   }
 }
 

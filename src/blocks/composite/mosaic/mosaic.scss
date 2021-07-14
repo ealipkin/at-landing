@@ -36,6 +36,11 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+
+    @include vertical {
+      display: flex !important;
+      flex-direction: row !important;
+    }
   }
 
   &__image {

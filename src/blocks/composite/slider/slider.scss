@@ -3,6 +3,7 @@
 
   @include laptop() {
     padding: 0;
+    padding-bottom: 150px;
   }
 
   &__inner {
@@ -55,7 +56,7 @@
       height: auto;
       font-size: 16px;
       padding-right: 44px;
-      max-height: 30vh;
+      max-height: 20vh;
       //max-height: none;
     }
   }
@@ -99,7 +100,10 @@
     box-sizing: border-box;
     position: relative;
     background: white;
-
+    max-height: 500px;
+    @include vertical {
+      max-height: 400px;
+    }
     &:after {
       content: '';
       width: 170px;
@@ -234,7 +238,7 @@
     justify-content: center;
     bottom: 9px;
   }
-  
+
   .slick-slide {
     transition: opacity 0.5s ease;
     @include laptop() {

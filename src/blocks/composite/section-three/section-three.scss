@@ -1,6 +1,14 @@
 .section_three {
   position: relative;
 
+  margin-top: -30px;
+  margin-bottom: -30px;
+
+  @include tablet {
+    margin-bottom: 0;
+    margin-top: auto;
+  }
+
   &:after {
     content: '';
     display: none;
@@ -27,7 +35,10 @@
 }
 
 .section-three {
-  padding-top: 30px;
+
+  @include tablet {
+    padding-top: 30px;
+  }
 
   @include laptop() {
     padding-top: 0;
@@ -58,9 +69,11 @@
 
   &__header {
     display: flex;
-    padding-top: 20px;
-    padding-bottom: 30px;
 
+    padding-bottom: 30px;
+    @include tablet {
+      padding-top: 20px;
+    }
     @include laptop() {
       padding-left: 83px;
       padding-top: 0;
