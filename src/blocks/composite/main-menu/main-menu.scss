@@ -8,19 +8,23 @@
 
   @include laptop {
     display: flex;
-    top: 109px;
+    top: 59px;
     left: -2px;
   }
 
   @include desktop {
     //left: 48px;
-    top: 50px;
-  }
+    //top: 50px;
 
-  @media (min-width: 1500px) {
+    //left: 50%;
+    //transform: translateX(-50%);
+
     top: 43px;
     right: 340px;
     left: auto;
+  }
+
+  @media (min-width: 1500px) {
   }
 
   &__item {
@@ -30,5 +34,22 @@
   &__link {
     text-decoration: none;
     color: white;
+    white-space: nowrap;
+    position: relative;
+
+    &:after {
+      content: '';
+      width: 100%;
+      border-bottom: 1px solid #FFED00;
+      position: absolute;
+      left: 0;
+      top: 120%;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    &:hover:after {
+      opacity: 1;
+    }
   }
 }

@@ -45,11 +45,6 @@
 }
 
 .section-five {
-
-  @include tablet {
-    //margin-bottom: -100px;
-  }
-
   @include laptop {
     margin-bottom: 0;
   }
@@ -59,9 +54,10 @@
     padding-bottom: 50px;
     display: flex;
     align-items: center;
-
+    @media (max-width: $tablet-width) {
+      padding-left: 0;
+    }
     @include laptop {
-      //padding-top: 50px;
       padding-top: 20px;
     }
   }
@@ -72,13 +68,8 @@
       top: 0;
       padding-top: 10px;
       padding-right: 0;
-      //position: absolute;
-      //left: 36px;
-      //top: 28px;
-      //max-width: 240px;
     }
     .section-header {
-      //padding-left: 0;
       padding-right: 0;
       min-width: 0;
     }
@@ -93,7 +84,6 @@
       @include laptop() {
         width: 120px;
       }
-      //display: none;
     }
   }
 
@@ -104,6 +94,7 @@
     @include desktop() {
       width: 500px;
       margin-top: -20px;
+      display: block;
     }
   }
 
@@ -123,7 +114,6 @@
     }
   }
 
-  .section-five__header
   &__next-link {
     display: none;
 
@@ -139,10 +129,5 @@
   }
 
   &__list {
-    margin-bottom: -100px;
-
-    @include tablet {
-      margin-bottom: 0;
-    }
   }
 }

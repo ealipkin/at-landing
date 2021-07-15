@@ -5,7 +5,9 @@
     padding: 0;
     padding-bottom: 150px;
   }
-
+  @include desktop {
+    padding-bottom: 50px;
+  }
   &__inner {
     //padding-bottom: 70px;
     //box-shadow: 0 0 15px 0 rgba(50, 50, 50, 0.1);
@@ -15,6 +17,10 @@
     display: flex;
     margin-bottom: 40px;
     @include laptop() {
+      margin-bottom: 15px;
+    }
+
+    @include desktop {
       margin-bottom: 33px;
     }
   }
@@ -22,7 +28,7 @@
   &__title {
     font-size: 12px;
     margin-top: 2px;
-    padding-bottom: 24px;
+    padding-bottom: 10px;
     position: relative;
 
     &:after {
@@ -38,8 +44,11 @@
     @include laptop() {
       font-size: 25px;
       margin-top: 11px;
-      padding-bottom: 41px;
       margin-bottom: 0;
+    }
+
+    @include laptop {
+      padding-bottom: 41px;
     }
   }
 
@@ -101,6 +110,14 @@
     position: relative;
     background: white;
     max-height: 500px;
+
+    @include laptop {
+      max-height: 350px;
+    }
+
+    @include desktop {
+      max-height: 400px;
+    }
     @include vertical {
       max-height: 400px;
     }

@@ -44,6 +44,9 @@
 .section_media {
   position: relative;
   z-index: 1;
+  @include vertical {
+    padding-bottom: 50px;
+  }
 
   @include tablet {
     @include disable-slides {

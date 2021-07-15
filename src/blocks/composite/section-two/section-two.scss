@@ -1,8 +1,11 @@
 .section_two {
+  position: relative;
   @media (max-width: 1024px) {
     //margin-top: -150px;
     //margin-bottom: -100px;
-    padding-bottom: 40px;
+    @include vertical {
+      padding-bottom: 40px;
+    }
   }
 
   @include laptop {
@@ -61,6 +64,10 @@
 }
 
 .section-two {
+  @include vertical {
+    margin-bottom: -100px;
+  }
+
   .info-block {
     display: none;
   }
@@ -231,8 +238,8 @@
 
   @include desktop() {
     margin-top: 50px;
-    max-width: 70%;
-    padding: 74px 70px 60px;
+    max-width: 77%;
+    padding: 34px 47px 60px;
   }
 
   @include vertical {
@@ -451,7 +458,7 @@
     }
 
     @include desktop {
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
 
     &:last-child {

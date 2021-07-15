@@ -7,7 +7,7 @@
   height: 100%;
   overflow: hidden;
   z-index: 0;
-  @include tablet {
+  @include laptop {
     display: block;
   }
 
@@ -19,7 +19,7 @@
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 200%;
     z-index: 1;
   }
 

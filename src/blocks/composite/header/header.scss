@@ -34,13 +34,17 @@
     @include tablet {
       display: flex;
     }
+    @include vertical {
+      display: flex;
+    }
 
     @include laptop() {
       font-size: 18px;
+      display: none;
     }
 
     @include desktop {
-      display: none;
+      display: flex;
     }
 
     &:after {
@@ -56,6 +60,10 @@
 
       @include tablet {
         display: block;
+      }
+
+      @include desktop {
+        display: none;
       }
     }
 

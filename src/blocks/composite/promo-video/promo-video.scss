@@ -19,6 +19,10 @@
     bottom: 30px;
   }
 
+  @include desktop {
+    right: 120px;
+  }
+
   .play-btn {
     position: relative;
     width: 50px;
@@ -42,6 +46,7 @@
 
   &__button-text {
     margin-left: 15px;
+    white-space: nowrap;
   }
 
   &__button {

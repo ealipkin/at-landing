@@ -23,6 +23,7 @@ const updateVideoSize = (video) => {
 
   const $videoContainer = $('.background-video');
   const $video = $('video');
+  $videoContainer.show();
 
   $videoContainer.width($section.width());
   $videoContainer.height($section.height());
@@ -83,7 +84,7 @@ const initFullPage = () => {
       loopBottom: true,
       normalScrollElements: '.scrollable-content',
       responsiveWidth: 1024,
-      responsiveHeight: 800,
+      responsiveHeight: 760,
       fitToSection: false,
       onLeave: function (origin, destination, direction) {
         const item = destination.item;
@@ -146,9 +147,11 @@ const closeMenu = () => {
     initFullPage();
 
     window.addEventListener('resize', () => {
+      const $videoContainer = $('.background-video');
+      $videoContainer.hide();
       setTimeout(() => {
         updateVideoSize(bgVideo);
-      }, 100)
+      }, 500)
     });
   });
 

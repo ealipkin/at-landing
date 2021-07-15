@@ -77,7 +77,6 @@
 
   @include vertical {
     min-height: 0;
-    padding-top: 180px;
     padding-bottom: 30px;
   }
   @include tablet() {
@@ -110,7 +109,17 @@
   }
 
   @include desktop {
-    justify-content: center;
+    //justify-content: center;
+    margin-top: 20%;
+    padding-top: 300px;
+
+    @include disable-slides {
+      padding-top: 0;
+    }
+
+    @include vertical {
+      padding-top: 0;
+    }
   }
 
 
@@ -120,6 +129,7 @@
         display: none !important;
       }
     }
+
     @include laptop() {
       width: 500px;
     }
@@ -206,8 +216,17 @@
       max-height: 90vh;
       top: 50%;
       transform: translateY(-50%);
-      right: 60px;
+      right: 45px;
       margin-top: -10px;
+    }
+
+    @include desktop {
+      right: 60px;
+      margin: 0;
+      position: static;
+      transform: none;
+      padding: 0;
+      margin-top: 80px;
     }
   }
 

@@ -41,7 +41,7 @@
     transform: translateX(-50%);
     display: none;
 
-    @include desktop {
+    @include laptop {
       display: block;
     }
 

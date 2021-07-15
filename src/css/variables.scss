@@ -8,12 +8,12 @@ $laptop-width: "1024px";
 $tablet-width: "768px";
 
 @mixin vertical {
-  @media (max-height: 400px) {
+  @media (max-height: 500px) {
     @content;
   }
 }
 @mixin disable-slides {
-  @media (max-height: 800px) {
+  @media (max-height: 760px) {
     @content;
   }
 }

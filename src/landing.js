@@ -15984,6 +15984,7 @@ var updateVideoSize = function updateVideoSize(video) {
   var $section = $('.section-main');
   var $videoContainer = $('.background-video');
   var $video = $('video');
+  $videoContainer.show();
   $videoContainer.width($section.width());
   $videoContainer.height($section.height());
   var scale_h = $section.width() / vid_w_orig;
@@ -16045,7 +16046,7 @@ var initFullPage = function initFullPage() {
     loopBottom: true,
     normalScrollElements: '.scrollable-content',
     responsiveWidth: 1024,
-    responsiveHeight: 800,
+    responsiveHeight: 760,
     fitToSection: false,
     onLeave: function onLeave(origin, destination, direction) {
       var item = destination.item;
@@ -16109,9 +16110,11 @@ var closeMenu = function closeMenu() {
   $(document).ready(function () {
     initFullPage();
     window.addEventListener('resize', function () {
+      var $videoContainer = $('.background-video');
+      $videoContainer.hide();
       setTimeout(function () {
         updateVideoSize(bgVideo);
-      }, 100);
+      }, 500);
     });
   });
   $('.move-to-link').click(function (e) {

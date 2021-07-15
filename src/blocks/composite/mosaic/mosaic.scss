@@ -164,6 +164,12 @@
     align-items: center;
     top: 100%;
 
+    @media (max-width: $laptop-width) {
+      width: 100%;
+      margin-left: 0;
+      box-sizing: border-box;
+    }
+
     @include laptop() {
       bottom: 0;
       top: auto;
@@ -222,6 +228,7 @@
       order: 2;
       align-items: center;
       display: flex;
+      justify-content: center;
 
       li {
         height: auto;
