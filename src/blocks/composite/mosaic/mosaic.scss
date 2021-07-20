@@ -171,8 +171,13 @@
     }
 
     @include laptop() {
-      bottom: 0;
+      top: 100%;
+      bottom: auto;
+    }
+
+    @include desktop() {
       top: auto;
+      bottom: -1px;
     }
 
     .slick-arrow {

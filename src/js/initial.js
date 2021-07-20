@@ -19,20 +19,23 @@ const vid_w_orig = 1280;
 const vid_h_orig = 720;
 const min_w = 300;
 const updateVideoSize = (video) => {
+  if(window.outerWidth < 1024) {
+    return;
+  }
   const $section = $('.section-main');
 
   const $videoContainer = $('.background-video');
   const $video = $('video');
-  $videoContainer.show();
+  $videoContainer.removeClass('_hidden');
 
   $videoContainer.width($section.width());
   $videoContainer.height($section.height());
 
-  var scale_h = $section.width() / vid_w_orig;
-  var scale_v = $section.height() / vid_h_orig;
-  var scale = scale_h > scale_v ? scale_h : scale_v;
+  const scale_h = $section.width() / vid_w_orig;
+  const scale_v = $section.height() / vid_h_orig;
+  let scale = scale_h > scale_v ? scale_h : scale_v;
 
-  if (scale * vid_w_orig < min_w) {scale = min_w / vid_w_orig;};
+  if (scale * vid_w_orig < min_w) {scale = min_w / vid_w_orig;}
 
   $video.width(scale * vid_w_orig);
   $video.height(scale * vid_h_orig);
@@ -148,7 +151,7 @@ const closeMenu = () => {
 
     window.addEventListener('resize', () => {
       const $videoContainer = $('.background-video');
-      $videoContainer.hide();
+      $videoContainer.addClass('_hidden');
       setTimeout(() => {
         updateVideoSize(bgVideo);
       }, 500)

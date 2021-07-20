@@ -922,7 +922,13 @@ body.hidden {
     padding-bottom: 50px;
     box-sizing: border-box;
   }
-  .section-five {
-    padding-bottom: 50px;
-  }
+}
+
+.os-resize-observer, .os-resize-observer-host {
+  pointer-events: all !important;
+}
+
+
+.fp-responsive .next-link {
+  display: none !important;
 }

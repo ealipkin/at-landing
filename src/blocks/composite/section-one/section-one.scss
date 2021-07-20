@@ -67,13 +67,16 @@
 
 .section-one {
   min-height: 470px;
-  padding-bottom: 40px;
+  padding-bottom: 100px;
   color: #fff;
-  position: relative;
   z-index: 1;
   padding-top: 100px;
 
-  top: 80px;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
   @include vertical {
     min-height: 0;

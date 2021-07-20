@@ -20,10 +20,14 @@ var vid_h_orig = 720;
 var min_w = 300;
 
 var updateVideoSize = function updateVideoSize(video) {
+  if (window.outerWidth < 1024) {
+    return;
+  }
+
   var $section = $('.section-main');
   var $videoContainer = $('.background-video');
   var $video = $('video');
-  $videoContainer.show();
+  $videoContainer.removeClass('_hidden');
   $videoContainer.width($section.width());
   $videoContainer.height($section.height());
   var scale_h = $section.width() / vid_w_orig;
@@ -34,7 +38,6 @@ var updateVideoSize = function updateVideoSize(video) {
     scale = min_w / vid_w_orig;
   }
 
-  ;
   $video.width(scale * vid_w_orig);
   $video.height(scale * vid_h_orig);
   $videoContainer.scrollLeft(($video.width() - $section.width()) / 2);
@@ -150,7 +153,7 @@ var closeMenu = function closeMenu() {
     initFullPage();
     window.addEventListener('resize', function () {
       var $videoContainer = $('.background-video');
-      $videoContainer.hide();
+      $videoContainer.addClass('_hidden');
       setTimeout(function () {
         updateVideoSize(bgVideo);
       }, 500);

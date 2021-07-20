@@ -7,6 +7,9 @@
   height: 100%;
   overflow: hidden;
   z-index: 0;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  display: none;
   @include laptop {
     display: block;
   }
@@ -38,4 +41,8 @@
     object-fit: cover; /*cover video background */
     z-index: 0;
   }
+}
+
+.background-video.hidden {
+  opacity: 0;
 }
