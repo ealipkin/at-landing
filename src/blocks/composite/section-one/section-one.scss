@@ -67,10 +67,13 @@
 
 .section-one {
   min-height: 470px;
-  padding-bottom: 100px;
+  padding-bottom: 30px;
   color: #fff;
   z-index: 1;
   padding-top: 100px;
+  width: 100%;
+  box-sizing: border-box;
+
 
   bottom: 0;
   position: absolute;
@@ -81,18 +84,20 @@
   @include vertical {
     min-height: 0;
     padding-bottom: 30px;
+    width: 100%;
   }
   @include tablet() {
     top: auto;
     position: absolute;
     bottom: 0;
     left: 0;
+    width: 100%;
     min-height: 0;
   }
 
   @include laptop() {
     padding-left: 30px;
-
+    padding-bottom: 50px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -183,6 +188,8 @@
   }
 
   &__buttons {
+    display: flex;
+    align-items: center;
     margin-top: 35px;
     @include laptop() {
       margin-top: 52px;

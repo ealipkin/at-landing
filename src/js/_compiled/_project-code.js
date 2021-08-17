@@ -112,7 +112,6 @@ var initFullPage = function initFullPage() {
       }
 
       $(mainMenu).addClass('_hidden');
-      promoVideo.classList.add('_hidden');
     },
     afterLoad: function afterLoad(origin, destination, direction) {
       var item = destination.item;
@@ -120,15 +119,7 @@ var initFullPage = function initFullPage() {
       var anchor = item.dataset.anchor;
 
       if (destination.isFirst) {
-        if (promoVideo) {
-          promoVideo.classList.remove('_hidden');
-        }
-
         $(mainMenu).removeClass('_hidden');
-      } else {
-        if (promoVideo) {
-          promoVideo.classList.add('_hidden');
-        }
       }
 
       $('.questions').fadeOut();
@@ -253,6 +244,33 @@ var closeMenu = function closeMenu() {
 })();
 "use strict";
 
+;
+
+(function () {
+  var $slider = $('.mosaic__inner');
+  $('.mosaic').lightGallery({
+    selector: '.mosaic__row a',
+    thumbnail: false,
+    appendCounterTo: '.lg'
+  });
+  $slider.slick({
+    dots: true,
+    arrows: true,
+    // fade: true,
+    speed: 1000,
+    lazyLoad: 'ondemand',
+    infinite: true,
+    edgeFriction: '2',
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    centerMode: true,
+    appendArrows: '.mosaic__controls',
+    appendDots: '.mosaic__controls',
+    centerPadding: '15%'
+  });
+})();
+"use strict";
+
 (function () {
   $('.menu__link').click(function (e) {
     var $target = $(e.currentTarget);
@@ -277,33 +295,6 @@ var closeMenu = function closeMenu() {
       $menu.addClass('menu_opened');
       $('body').addClass('hidden');
     }
-  });
-})();
-"use strict";
-
-;
-
-(function () {
-  var $slider = $('.mosaic__inner');
-  $('.mosaic').lightGallery({
-    selector: '.mosaic__row a',
-    thumbnail: false,
-    appendCounterTo: '.lg'
-  });
-  $slider.slick({
-    dots: true,
-    arrows: true,
-    // fade: true,
-    speed: 1000,
-    lazyLoad: 'ondemand',
-    infinite: true,
-    edgeFriction: '2',
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    centerMode: true,
-    appendArrows: '.mosaic__controls',
-    appendDots: '.mosaic__controls',
-    centerPadding: '15%'
   });
 })();
 "use strict";
@@ -464,16 +455,18 @@ var closeMenu = function closeMenu() {
     var selectedParsedDate = dayjs("".concat(selectedYear, "-").concat(selectedMonth, "-").concat(selectedDate));
     var currentParsedDate = dayjs(now);
     var selectedEqualCurrent = selectedYear === currentYear && selectedMonth === currentMonth;
-    var maxDay = selectedParsedDate.daysInMonth();
-    var dateDay = selectedEqualCurrent ? currentParsedDate.date() : 1;
+    var maxDay = selectedParsedDate.daysInMonth(); // const dateDay = selectedEqualCurrent ? currentParsedDate.date() : 1;
+
+    var dateDay = 1;
     $daySelect.html('');
 
     for (var _i = dateDay; _i <= maxDay; _i++) {
       $daySelect.append("<option>".concat(_i, "</option>"));
     }
 
-    $daySelect.val(selectedDate >= dateDay ? selectedDate : dateDay);
-    var calculatedMonth = selectedYear === currentYear ? currentMonth : 1;
+    $daySelect.val(selectedDate >= dateDay ? selectedDate : dateDay); // const calculatedMonth = selectedYear === currentYear ? currentMonth : 1;
+
+    var calculatedMonth = 1;
     var maxMonth = 12;
     $monthSelect.html('');
 

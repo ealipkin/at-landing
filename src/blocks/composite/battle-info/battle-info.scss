@@ -71,9 +71,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
   z-index: 12;
+  margin-top: 30px;
+
+  span {
+    display: none !important;
+  }
+
+  a {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    position: relative;
+
+    &:after {
+      content: 'Смотреть видео';
+      color: black;
+      font-size: 20px;
+      position: relative;
+
+      font-family: inherit;
+      display: block;
+      margin-left: 20px;
+
+      @include laptop {
+        display: none;
+      }
+    }
+  }
 
   img {
     max-width: 100%;
@@ -115,14 +140,37 @@
   }
 
   @media (min-width: 1400px) {
-    right: 2%;
-    width: 40vw;
+    right: 0;
+    width: 50%;
   }
 
   &__play {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    @include laptop {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+  }
+
+  img {
+    display: none;
+    @include laptop {
+      display: block;
+    }
+  }
+
+  &:after {
+    @include laptop {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background: white;
+      position: absolute;
+      opacity: 0.4;
+      z-index: 1;
+    }
   }
 }

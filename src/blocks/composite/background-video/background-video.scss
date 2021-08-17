@@ -1,5 +1,5 @@
 .background-video {
-  display: none;
+  display: none !important;
   position: absolute;
   top: 0;
   left: 0;
@@ -9,9 +9,8 @@
   z-index: 0;
   opacity: 1;
   transition: opacity 0.5s ease;
-  display: none;
   @include laptop {
-    display: block;
+    display: block !important;
   }
 
   &:after {

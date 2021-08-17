@@ -107,7 +107,8 @@
     const selectedEqualCurrent = (selectedYear === currentYear) && (selectedMonth === currentMonth);
 
     const maxDay = selectedParsedDate.daysInMonth();
-    const dateDay = selectedEqualCurrent ? currentParsedDate.date() : 1;
+    // const dateDay = selectedEqualCurrent ? currentParsedDate.date() : 1;
+    const dateDay = 1;
 
     $daySelect.html('');
     for (let i = dateDay; i <= maxDay; i++) {
@@ -115,7 +116,8 @@
     }
     $daySelect.val(selectedDate >= dateDay ? selectedDate : dateDay);
 
-    const calculatedMonth = selectedYear === currentYear ? currentMonth : 1;
+    // const calculatedMonth = selectedYear === currentYear ? currentMonth : 1;
+    const calculatedMonth = 1;
     const maxMonth = 12;
     $monthSelect.html('');
     for (let i = calculatedMonth; i <= maxMonth; i++) {

@@ -11,7 +11,13 @@
     font-size: 22px;
     margin-right: 15%;
   }
+  &__inner {
+    word-break: break-all;
 
+    @include tablet{
+      word-break: normal;
+    }
+  }
   &__item {
     list-style-type: none;
     position: relative;
