@@ -82,7 +82,7 @@
         display: block;
       }
       @include laptop() {
-        width: 120px;
+        max-width: 370px;
       }
     }
   }

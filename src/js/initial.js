@@ -84,7 +84,7 @@ const initFullPage = () => {
       anchors: getAnchors(),
       autoScrolling: true,
       scrollHorizontally: true,
-      loopBottom: true,
+      // loopBottom: true,
       normalScrollElements: '.scrollable-content',
       responsiveWidth: 1024,
       responsiveHeight: 760,

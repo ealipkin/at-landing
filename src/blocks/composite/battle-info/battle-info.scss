@@ -73,6 +73,7 @@
   justify-content: center;
   z-index: 12;
   margin-top: 30px;
+  margin-bottom: 30px;
 
   span {
     display: none !important;
@@ -101,6 +102,7 @@
   }
 
   img {
+    display: none;
     max-width: 100%;
 
     @include laptop() {
@@ -108,6 +110,9 @@
     }
   }
 
+  @include tablet {
+    margin-bottom: 0;
+  }
   @include laptop() {
     position: absolute;
 
@@ -116,16 +121,16 @@
     justify-content: center;
 
     margin: 0;
-    top: 50%;
-    transform: translateY(-50%);
     right: 0;
     left: auto;
     background: url(../images/step-nine.jpg) no-repeat center;
     background-size: cover;
 
-    width: 37%;
-    height: 75%;
-    margin-top: 2%;
+    height: 100%;
+    width: 40%;
+    top: 0;
+    transform: none;
+    z-index: 0;
 
   }
 
@@ -152,13 +157,6 @@
       top: 50%;
       transform: translate(-50%, -50%);
       z-index: 2;
-    }
-  }
-
-  img {
-    display: none;
-    @include laptop {
-      display: block;
     }
   }
 

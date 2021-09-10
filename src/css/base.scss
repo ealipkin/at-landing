@@ -18,11 +18,13 @@ body.hidden {
 .container {
   min-width: 320px;
   margin: 0 auto;
-  padding: 0 35px;
+  padding: 0 25px;
   box-sizing: border-box;
 
   //max-width: 1280px;
-
+  @include tablet {
+    padding: 0 35px;
+  }
   @include laptop() {
     padding: 0 80px;
   }
@@ -69,6 +71,7 @@ body.hidden {
   @include laptop {
     padding: 0 87px;
   }
+
   &--yellow {
     color: black;
     background: #FFED00;
@@ -111,6 +114,7 @@ body.hidden {
 
 
 .section-header {
+  align-items: center;
   @include laptop() {
     display: flex;
     position: absolute;
@@ -125,6 +129,12 @@ body.hidden {
     padding-right: 30px;
     width: 155px;
 
+    @media (max-width: 767px) {
+      width: 100% !important;
+      max-width: none;
+
+    }
+
     &:after {
       content: '';
       height: 100%;
@@ -133,6 +143,11 @@ body.hidden {
       right: 0;
       top: 0;
       background: #FFED00;
+      display: none;
+
+      @include tablet {
+        display: block;
+      }
     }
 
     @include laptop() {
@@ -145,12 +160,16 @@ body.hidden {
   }
 
   &__text {
-    display: flex;
+
     width: 220px;
     font-size: 14px;
     line-height: 1.7em;
-    padding-top: 10px;
     padding-left: 40px;
+    display: none !important;
+
+    @include tablet {
+      display: flex !important;
+    }
 
     @include laptop() {
       width: 550px;

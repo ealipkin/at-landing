@@ -47,12 +47,15 @@
 }
 
 .section-seven {
+  overflow: hidden;
   position: relative;
   z-index: 1;
 
   padding-top: 30px;
   padding-bottom: 50px;
-
+  @include tablet {
+    overflow: visible;
+  }
   @include laptop() {
     padding-top: 0;
   }
